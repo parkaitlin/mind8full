@@ -14,28 +14,15 @@ class Registration extends Component {
             [e.target.name]: e.target.value
         })
     }
-    handleSubmit = async (e)=>{
+    handleSubmit = (e)=>{
         e.preventDefault();
-        try {
-            const registeredUser = await fetch('/user', {
-                method: "POST",
-                credentials: 'include',
-                body: JSON.stringify(this.state),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            const parsedResponse = await registeredUser.json();
-            console.log(parsedResponse)
-            
-        } catch (error) {
-            console.log(error)
-        } 
+        this.props.register(this.state)
     }
     render(){
         return(
-            <div className="container">
-            <div className="registration-box">
+            this.props.logged
+            ? <Redirect to='/home'/>
+            : <div className="registration-box">
                 <h4>create an account</h4>
                 <form onSubmit={this.handleSubmit}>
                     first name*: <input type='text' name='firstName' onChange={this.handleChange} /><br/>
@@ -45,7 +32,6 @@ class Registration extends Component {
                     <button type='submit'>Create!</button>
                 </form>
                 <p>* required</p>
-            </div>
             </div>
         )
     }

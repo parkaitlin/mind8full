@@ -4,52 +4,27 @@ import {Redirect} from 'react-router-dom';
 class Login extends Component {
     state = {
         email: '',
-        password: '',
-        logged: this.props.logged
+        password: ''
     }
     handleChange = (e)=>{
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-    handleSubmit = async (e)=>{
+    handleSubmit = (e)=>{
         e.preventDefault();
         this.props.login(this.state)
         this.setState({
-            password: this.props.password
+            password: this.props.password,
         })
-        // try {
-        //     const loginResponse = await fetch('/auth/login', {
-        //         method:"POST",
-        //         credentials: 'include',
-        //         body: JSON.stringify(this.state),
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         }
-        //     })
-        //     const parsedResponse = await loginResponse.json()
-        //     console.log(parsedResponse)
-        //     if(parsedResponse.data === 'login successful'){
-        //         console.log(parsedResponse.data)
-        //         this.setState({
-        //             logged: true
-        //         })
-        //     } else {
-        //         console.log(parsedResponse.data)
-        //         this.setState({
-        //             password: '',
-        //             message: 'Unfortunately the login information provided, does not match our records. Please try again.'
-        //         })
-        //     }
-        // } catch (error) {
-        //     console.log(error)
-        // }
     }
     render(){
         const {email, password} = this.state;
         return(
-            <div className="container">
-            <h2>Welcome</h2>
+            this.props.logged
+            ? <Redirect to='/home'/>
+            : <div>
+                <h2 className='welcome'>welcome</h2>
                 <div className="login-box">
                     <form onSubmit={this.handleSubmit}>
                         email: <input type='text' name='email' value={email} onChange={this.handleChange} /><br/>

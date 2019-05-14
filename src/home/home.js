@@ -1,17 +1,27 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
+
 
 const Home = (props)=>{
+    console.log(props.registered)
+    console.log(props.logged)
     return(
-        <div className='container'>
-            <h2>Welcome</h2>
-            <h5>back {this.props.name}</h5>
+        props.logged
+        ? <div>
+            <h2 className='welcome'>welcome</h2>
+            {props.registered
+            ? <h4>{props.name}</h4>
+            : props.logged
+            && <h4>back {props.name}</h4>
+            }
             <h6>what would you like?</h6>
             <div className='home-links'>
-                <h6>gummy bear</h6>
-                <h6>cough drop</h6>
+                <h6>a gummy bear</h6>
+                <h6>a cough drop</h6>
                 <h6>something to munch on ...</h6>
             </div>
         </div>
+        : <Redirect to='/' />
     )
 }
 

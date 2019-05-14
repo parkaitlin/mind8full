@@ -1,0 +1,15 @@
+.about-string {
+    font-weight: 200;
+}
+span {
+    font-weight: bold;
+}
+
+.about-para {
+    border: 2px solid black;
+    border-radius: 8px;
+    margin: auto 60px;
+    padding: 10px;
+    font-weight: 200;
+    font-size: 12px;
+}
