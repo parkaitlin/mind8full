@@ -28,9 +28,11 @@
   display: flex;
   justify-content: space-between;
   width: 30%;
-
 }
-
+.navbar-link {
+  text-decoration: none;
+}
 .active {
-  border-bottom: 1px solid lightcoral;
+  text-decoration: underline;
+  text-decoration-color: greenyellow;
 }

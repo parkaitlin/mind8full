@@ -19,12 +19,14 @@ class Registration extends Component {
         this.props.register(this.state)
     }
     render(){
+        const {logged, message} = this.props
         return(
-            this.props.logged
+            logged
             ? <Redirect to='/home'/>
             : <div className="registration-box">
                 <h4>create an account</h4>
                 <form onSubmit={this.handleSubmit}>
+                    <p className='message'>{message}</p>
                     first name*: <input type='text' name='firstName' onChange={this.handleChange} /><br/>
                     last name (optional): <input type='text' name='lastName' onChange={this.handleChange} /><br/>
                     email*: <input type='text' name='email' onChange={this.handleChange} /><br/>

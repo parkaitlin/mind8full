@@ -25,7 +25,7 @@ class App extends Component {
   }
   register = async (info)=>{
     try {
-      const registeredUser = await fetch('/user', {
+      const registeredUser = await fetch('/auth/register', {
           method: "POST",
           credentials: 'include',
           body: JSON.stringify(info),
@@ -43,7 +43,7 @@ class App extends Component {
         })
       } else {
         this.setState({
-          message: parsedResponse.data  
+          message: parsedResponse.message  
         })
       }
   } catch (error) {
@@ -66,18 +66,42 @@ class App extends Component {
           console.log(parsedResponse.data)
           this.setState({
             logged: true,
-            name: parsedResponse.user.foundUser.firstName
+            name: parsedResponse.user.firstName
           })
       } else {
           console.log(parsedResponse.data)
           this.setState({
               password: '',
-              message: 'Unfortunately the login information provided, does not match our records. Please try again.'
+              message: parsedResponse.message
           })
       }
   } catch (error) {
       console.log(error)
   }
+  }
+  logout = async () => {
+    try {
+      const logoutResponse = await fetch('/auth/logout', {
+        method: 'POST',
+        credentials:'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const parsedResponse = await logoutResponse.json();
+      console.log(parsedResponse)
+      this.setState({
+        logged: false,
+        message: parsedResponse.message
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  cleanMessage = ()=>{
+    this.setState({
+      message: ''
+    })
   }
   render(){
     const {registered, logged, password, message, name} = this.state
@@ -85,12 +109,12 @@ class App extends Component {
       <div className="App">
         <div className="container">
           {logged
-          ? <NavTwo />
-          : <NavOne />
+          ? <NavTwo logout={this.logout} />
+          : <NavOne cleanMessage={this.cleanMessage} />
           }
           <Switch>
             <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
-            <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} register={this.register} message={message}/>} />
+            <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} message={message}/>} />
             <Route exact path={routes.HOME} render={()=> <Home logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
           </Switch>

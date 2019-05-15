@@ -20,13 +20,15 @@ class Login extends Component {
     }
     render(){
         const {email, password} = this.state;
+        const {logged, message} = this.props;
         return(
-            this.props.logged
+            logged
             ? <Redirect to='/home'/>
             : <div>
                 <h2 className='welcome'>welcome</h2>
                 <div className="login-box">
                     <form onSubmit={this.handleSubmit}>
+                        <p className='message'>{message}</p>
                         email: <input type='text' name='email' value={email} onChange={this.handleChange} /><br/>
                         password: <input type='password' name='password' value={password} onChange={this.handleChange} /><br/>
                         <button type='submit'>login</button>
