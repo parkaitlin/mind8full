@@ -13,7 +13,11 @@ import Login from './login/login';
 import Registration from './registration/registration';
 import Home from './home/home';
 import About from './about/about';
+import Bears from './snacks/bear';
+import Drop from './snacks/drop';
+import Munchie from './snacks/munch';
 import { async } from 'q';
+import Bear from './snacks/bear';
 
 class App extends Component {
   state = {
@@ -22,10 +26,11 @@ class App extends Component {
     password: '',
     message: '',
     name: '',
-    gummy: '',
+    bear: '',
+    bearCategory: ['inspire', 'inspirational', 'kindness', 'inspiration'],
     drop: '',
-    quote: '',
-    prompt: ''
+    dropCategory: ['motivational', 'positive', 'hopeful', 'optimism'],
+    munchie: ''
   }
   register = async (info)=>{
     try {
@@ -61,7 +66,7 @@ class App extends Component {
           credentials: 'include',
           body: JSON.stringify(info),
           headers: {
-              'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
           }
       })
       const parsedResponse = await loginResponse.json()
@@ -102,27 +107,47 @@ class App extends Component {
       console.log(error)
     }
   }
-  cleanMessage = ()=>{
+  clearMessage = ()=>{
     this.setState({
       message: ''
     })
   }
+  getBear = async ()=>{
+    const i = Math.floor(Math.random() * 4)
+    const category = this.state.bearCategory[i]
+    console.log(category)
+    try {
+      const bearResponse = await fetch(`http://quotes.rest/quote/search.json?category=${category}`, {
+        headers: {
+          'Accept': 'application/json',
+          "X-TheySaidSo-Api-Secret": "a_7pUAPYRGRoIbJmOxMWJweF"
+        }
+      })
+      const parsedResponse = await bearResponse.json()
+      console.log(parsedResponse)
+      this.setState({
+        bear: parsedResponse.contents
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   render(){
-    const {registered, logged, password, message, name} = this.state
+    const {registered, logged, password, message, name, bear} = this.state
     return (
       <div className="App">
         <div className="container">
           {logged
           ? <NavTwo logout={this.logout} />
-          : <NavOne cleanMessage={this.cleanMessage} />
+          : <NavOne clearMessage={this.clearMessage} />
           }
           <Switch>
             <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
-            <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} message={message}/>} />
-            <Route exact path={routes.HOME} render={()=> <Home logged={logged} registered={registered} name={name} />} />
+            <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
+            <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
             <Route exact path={routes.PROFILE} render={()=> <div>Profile | Calendar | Journal</div>} />
-            <Route exact path={routes.BEAR} render={()=> <div>GUMMY BEAR</div>} />
+            <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} />} />
             <Route exact path={routes.DROP} render={()=> <div>Cough Drop</div>} />
             <Route exact path={routes.MUNCH} render={()=> <div>Something to Munch on...</div>} />
           </Switch>

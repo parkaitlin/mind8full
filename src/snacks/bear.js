@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Bear extends Component {
-    state = {
-        quote: ''
-    } 
-    render(){
-        return(
-            <div>
-                
+const Bear = (props)=>{
+    return(
+        <div>
+            <h5>gummy bear</h5>
+            <div className='quote-container'>
+                <h6>"{props.bear.quote}"</h6>
+                <p>-{props.bear.author}</p>
             </div>
-        )
-    } 
+        </div>
+    )
+} 
 
-}
+export default Bear;
