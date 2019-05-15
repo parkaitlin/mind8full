@@ -26,9 +26,9 @@ class App extends Component {
     message: '',
     name: '',
     bear: '',
-    bearCategory: ['inspire', 'inspirational', 'kindness', 'inspiration'],
+    bearCategory: ['inspire', 'inspirational', 'kindness', 'inspiration', 'determined', 'grit', "inspirational-attitude", "inspirational-happiness"],
     drop: '',
-    dropCategory: ['motivational', 'positive', 'hopeful', 'optimism'],
+    dropCategory: ['motivational', 'positive', 'hopeful', 'optimism', 'happiness', 'compassion', 'perseverance'],
     munchie: {
       title: "Exercise Your Mind",
       quote: "Possessing a creative mind...is something like having a border collie for a pet: it needs to work, or else it will cause you and outrageous amount of trouble. Give your mind a job to so, or else it will find a job to do, and you might not like the job it invents",
@@ -117,40 +117,31 @@ class App extends Component {
     })
   }
   getBear = async ()=>{
-    const i = Math.floor(Math.random() * 4)
+    const i = Math.floor(Math.random() * 8)
     const category = this.state.bearCategory[i]
     console.log(category)
     try {
-      const bearResponse = await fetch(`http://quotes.rest/quote/search.json?category=${category}`, {
-        headers: {
-          'Accept': 'application/json',
-          "X-TheySaidSo-Api-Secret": "a_7pUAPYRGRoIbJmOxMWJweF"
-        }
-      })
-      const parsedResponse = await bearResponse.json()
-      console.log(parsedResponse)
+      const data = await fetch(`/user/${category}`);
+      const parsedData = await data.json();
+      console.log(parsedData)
       this.setState({
-        bear: parsedResponse.contents
+        bear: parsedData.data.contents
       })
+      
     } catch (error) {
       console.log(error)
-    }
+    } 
   }
   getDrop = async ()=>{
-    const i = Math.floor(Math.random() * 4)
+    const i = Math.floor(Math.random() * 7)
     const category = this.state.dropCategory[i]
     console.log(category)
     try {
-      const dropResponse = await fetch(`http://quotes.rest/quote/search.json?category=${category}`, {
-        headers: {
-          'Accept': 'application/json',
-          "X-TheySaidSo-Api-Secret": "a_7pUAPYRGRoIbJmOxMWJweF"
-        }
-      })
-      const parsedResponse = await dropResponse.json()
-      console.log(parsedResponse)
+      const data = await fetch(`/user/${category}`);
+      const parsedData = await data.json();
+      console.log(parsedData)
       this.setState({
-        drop: parsedResponse.contents
+        drop: parsedData.data.contents
       })
     } catch (error) {
       console.log(error)
