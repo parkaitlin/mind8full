@@ -21,7 +21,11 @@ class App extends Component {
     logged: false,
     password: '',
     message: '',
-    name: ''
+    name: '',
+    gummy: '',
+    drop: '',
+    quote: '',
+    prompt: ''
   }
   register = async (info)=>{
     try {
@@ -117,6 +121,10 @@ class App extends Component {
             <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} message={message}/>} />
             <Route exact path={routes.HOME} render={()=> <Home logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
+            <Route exact path={routes.PROFILE} render={()=> <div>Profile | Calendar | Journal</div>} />
+            <Route exact path={routes.BEAR} render={()=> <div>GUMMY BEAR</div>} />
+            <Route exact path={routes.DROP} render={()=> <div>Cough Drop</div>} />
+            <Route exact path={routes.MUNCH} render={()=> <div>Something to Munch on...</div>} />
           </Switch>
         </div>
       </div>

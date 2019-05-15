@@ -9,7 +9,7 @@ const About = (props)=>{
             <h6 className='about-string'>mindfulness . awareness . <span>meditation</span> . relaxation . stress relief</h6>
             <div className='about-para'>
                 <p>if you visited with any of these in mind or for a mental break, maybe we can help. :)<br/><br/>
-                mind | full’s hopes to provide a space for personal meditation. We want our visitors to take care of their mental health in the method they see fit. As you may know meditation takes many forms, at (app name) we do it in the form of snacks: gummy bears, cough drops, and some munchies.<br/><br/>
+                mind | full hopes to provide a space for personal meditation. We want our visitors to take care of their mental health in the method they see fit. As you may know meditation takes many forms, at mind | full we do it in the form of snacks: gummy bears, cough drops, and some munchies.<br/><br/>
                 Let us explain… the first two are simply sending good vibes depending on what you need in the moment. This usually includes music, a serene backdrop, and a quote to ponder about. Gummy bears are for when you are looking for some inspiration, and cough drops are for those days you need a little mood booster.
                 (I know, I’m sorry there aren’t any real snacks)<br/><br/>
                 The third option, “something to munch on”, is an exercise where we send you a prompt with the option to discuss internally or to write a journal entry. When you create an account you will have a calendar to track your progress and your very own journal to hold your entries.<br/><br/>
