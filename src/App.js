@@ -13,11 +13,10 @@ import Login from './login/login';
 import Registration from './registration/registration';
 import Home from './home/home';
 import About from './about/about';
-import Bears from './snacks/bear';
+import Bear from './snacks/bear';
 import Drop from './snacks/drop';
 import Munchie from './snacks/munch';
 import { async } from 'q';
-import Bear from './snacks/bear';
 
 class App extends Component {
   state = {
@@ -132,8 +131,28 @@ class App extends Component {
       console.log(error)
     }
   }
+  getDrop = async ()=>{
+    const i = Math.floor(Math.random() * 4)
+    const category = this.state.dropCategory[i]
+    console.log(category)
+    try {
+      const dropResponse = await fetch(`http://quotes.rest/quote/search.json?category=${category}`, {
+        headers: {
+          'Accept': 'application/json',
+          "X-TheySaidSo-Api-Secret": "a_7pUAPYRGRoIbJmOxMWJweF"
+        }
+      })
+      const parsedResponse = await dropResponse.json()
+      console.log(parsedResponse)
+      this.setState({
+        drop: parsedResponse.contents
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   render(){
-    const {registered, logged, password, message, name, bear} = this.state
+    const {registered, logged, password, message, name, bear, drop} = this.state
     return (
       <div className="App">
         <div className="container">
@@ -144,11 +163,11 @@ class App extends Component {
           <Switch>
             <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
             <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
-            <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} logged={logged} registered={registered} name={name} />} />
+            <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} getDrop={this.getDrop} logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
             <Route exact path={routes.PROFILE} render={()=> <div>Profile | Calendar | Journal</div>} />
             <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} />} />
-            <Route exact path={routes.DROP} render={()=> <div>Cough Drop</div>} />
+            <Route exact path={routes.DROP} render={()=> <Drop drop={drop} />} />
             <Route exact path={routes.MUNCH} render={()=> <div>Something to Munch on...</div>} />
           </Switch>
         </div>
