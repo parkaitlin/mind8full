@@ -5,11 +5,6 @@ import { async } from 'q';
 class Munchie extends Component {
     state = {
         date: '',
-        title: this.props.munchie.title,
-        quote: this.props.munchie.quote,
-        author: this.props.munchie.author,
-        prompt: this.props.munchie.prompt,
-        entry: '',
         newEntry: false
     }
     paperForEntry = ()=>{
@@ -19,12 +14,12 @@ class Munchie extends Component {
             date: new Date().toDateString()
         })
     }
-    createNewEntry = async ()=>{
+    saveNewEntry = async (info)=>{
         try {
-            const entryResponse = await fetch('/entry', {
+            const entryResponse = await fetch('/user/entry', {
                 method: "POST",
                 credentials: 'include',
-                body: JSON.stringify(this.state),
+                body: JSON.stringify(info),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -42,16 +37,17 @@ class Munchie extends Component {
         })
     }
     render(){
-        const {date, title, quote, author, prompt, newEntry} = this.state
+        const {date, newEntry} = this.state
+        const {munchie} = this.props
         return(
             <div className='munch-box'>
-                <h4>{title}</h4>
-                <h6>{quote}}</h6>
-                <h6>-{author}}</h6>
+                <h4>{munchie.title}</h4>
+                <h6>{munchie.quote}}</h6>
+                <h6>-{munchie.author}}</h6>
                 <p>something to munch on...</p><br/>
-                <p>{prompt}</p>
+                <p>{munchie.prompt}</p>
                 {newEntry
-                ? <JournalEntry date={date} cancelNewEntry={this.cancelNewEntry} />
+                ? <JournalEntry munchie={munchie} date={date} cancelNewEntry={this.cancelNewEntry} saveNewEntry={this.saveNewEntry} />
                 : <button onClick={this.paperForEntry}>New journal entry</button> 
                 }
             </div>

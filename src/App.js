@@ -121,7 +121,9 @@ class App extends Component {
     const category = this.state.bearCategory[i]
     console.log(category)
     try {
-      const data = await fetch(`/user/${category}`);
+      const data = await fetch(`/user/${category}`, {
+        credentials: 'include'
+      });
       const parsedData = await data.json();
       console.log(parsedData)
       this.setState({
@@ -137,7 +139,9 @@ class App extends Component {
     const category = this.state.dropCategory[i]
     console.log(category)
     try {
-      const data = await fetch(`/user/${category}`);
+      const data = await fetch(`/user/${category}`, {
+        credentials: 'include'
+      });
       const parsedData = await data.json();
       console.log(parsedData)
       this.setState({

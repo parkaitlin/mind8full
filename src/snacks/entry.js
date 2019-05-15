@@ -4,7 +4,12 @@ import React, {Component} from 'react';
 
 class JournalEntry extends Component {
     state = {
-        entry: '',
+        date: this.props.date,
+        title: this.props.munchie.title,
+        quote: this.props.munchie.quote,
+        author: this.props.munchie.author,
+        prompt: this.props.munchie.prompt,
+        entry: ''
     }
     handleChange = (e)=>{
         console.log(e.target.value)
@@ -14,7 +19,7 @@ class JournalEntry extends Component {
     }
     saveEntry = ()=>{
         console.log('saved!')
-        // this.createNewEntry()
+        this.props.saveNewEntry(this.state)
     }
     render(){
         const {entry} = this.state;
