@@ -17,7 +17,7 @@ import Bear from './snacks/bear';
 import Drop from './snacks/drop';
 import Munchie from './snacks/munch';
 import ProfilePage from './profile/profilePage';
-import { async } from 'q';
+// import { async } from 'q';
 
 class App extends Component {
   state = {
@@ -35,7 +35,8 @@ class App extends Component {
       quote: "Possessing a creative mind...is something like having a border collie for a pet: it needs to work, or else it will cause you and outrageous amount of trouble. Give your mind a job to so, or else it will find a job to do, and you might not like the job it invents",
       author: "Elizabeth Gilbert",
       prompt: "It only takes a few minutes to realize that your mind doesn't have an on/off switch. As Elizabeth Gilbert says, it's more like a large and energetic dog. Our minds give us the most fabulous experiences with their rambunctious frolicking, but they can be quite destructive. To give your mind something to do, put it to work noticing beauty and joy in the word. Right now ask it to put aside the depressing headlines from the day's news, the hurtful comment that a colleague made at work, the like of items you need to buy at the grocery store. Ask it to think of ten beautiful things it has encountered in the last 24 hours, and ask it to go on noticing beauty throughout the dat to come."
-    }
+    },
+    currentUser: ''
   }
   register = async (info)=>{
     try {
@@ -80,7 +81,8 @@ class App extends Component {
           console.log(parsedResponse.data)
           this.setState({
             logged: true,
-            name: parsedResponse.user.firstName
+            name: parsedResponse.user.firstName,
+            currentUser: parsedResponse.user
           })
       } else {
           console.log(parsedResponse.data)
@@ -152,13 +154,28 @@ class App extends Component {
       console.log(error)
     }
   }
+//   getUser = async ()=>{
+//     console.log('getting user...')
+//     try {
+//       const userResponse = await fetch('/user/profile', {
+//           credentials: 'include'
+//       })
+//       const parsedResponse = await userResponse.json();
+//       console.log(parsedResponse)
+//       this.setState({
+//         currentUser: parsedResponse.data
+//       })
+//   } catch (error) {
+//       console.log(error)
+//   }
+// }
   render(){
-    const {registered, logged, password, message, name, bear, drop, munchie} = this.state
+    const {registered, logged, password, message, name, bear, drop, munchie, currentUser} = this.state
     return (
       <div className="App">
         <div className="container">
           {logged
-          ? <NavTwo logout={this.logout} />
+          ? <NavTwo logout={this.logout} getUser={this.getUser} />
           : <NavOne clearMessage={this.clearMessage} />
           }
           <Switch>
@@ -166,7 +183,7 @@ class App extends Component {
             <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
             <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} getDrop={this.getDrop} logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
-            <Route exact path={routes.PROFILE} render={()=> <ProfilePage />} />
+            <Route exact path={routes.PROFILE} render={()=> <ProfilePage logged={logged} currentUser={currentUser} />} />
             <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} />} />
             <Route exact path={routes.DROP} render={()=> <Drop drop={drop} />} />
             <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} />} />

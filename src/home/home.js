@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, NavLink} from 'react-router-dom';
 
 import * as routes from '../constants/routes';
-import { async } from 'q';
+// import { async } from 'q';
 
 const Home = (props)=>{
     const {registered, logged, name} = props

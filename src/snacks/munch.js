@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import JournalEntry from './entry';
-import { async } from 'q';
+// import { async } from 'q';
 
 class Munchie extends Component {
     state = {

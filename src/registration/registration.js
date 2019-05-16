@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
-import { async } from 'q';
+// import { async } from 'q';
 
 class Registration extends Component {
     state = {

@@ -1,0 +1,19 @@
+.entries:hover {
+    text-decoration-line: underline;
+}
+
+.entry-modal {
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-page {
+    position: absolute;
+}
+
+.entry-page {
+    background-color: blanchedalmond;
+    width: 70%;
+}
