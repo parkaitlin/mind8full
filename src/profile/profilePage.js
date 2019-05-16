@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-
 import {Redirect} from 'react-router-dom';
-
 import './profile.css'
+
+import Calendar from './calendar'
 // import { async } from 'q';
 
 class ProfilePage extends Component {
@@ -10,11 +10,13 @@ class ProfilePage extends Component {
         showModal: false,
         key: 0
     }
-    viewEntry = (e)=>{
+    viewEntry = (info)=>{
+        console.log('view entry function')
         this.setState({
             showModal: true,
+            key: info
         })
-    }
+    } 
     closeModal = ()=>{
         this.setState({
             showModal: false
@@ -29,15 +31,17 @@ class ProfilePage extends Component {
             ? <div>
                 <div className='profile-page'>
                     <div className='user-info'>
-                        <h3>{currentUser.firstName}'s Journal</h3>
+                        <h3>{currentUser.firstName}</h3>
+                        <h5>(level){currentUser.level}</h5>
                     </div>
                     <div className='calendar'>
-                        <h4>CALENDAR</h4>
+                        <Calendar />
+                        <h4>total check-ins: {currentUser.calendar.length}</h4>
                     </div>
                     <div className='journal'>
-                        <h4>JOURNAL</h4>
+                        <h4>contents</h4>
                         {this.props.currentUser.journal.map((entry, i)=>{
-                            return <p key={entry._id} className='entries' onClick={this.viewEntry}>{entry.title} {entry.date}</p>
+                            return <p key={entry._id} className='entries' onClick={()=>this.viewEntry(i)}>{entry.title} {entry.date}</p>
                         })}
                     </div>
                 </div>

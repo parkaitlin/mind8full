@@ -154,21 +154,12 @@ class App extends Component {
       console.log(error)
     }
   }
-//   getUser = async ()=>{
-//     console.log('getting user...')
-//     try {
-//       const userResponse = await fetch('/user/profile', {
-//           credentials: 'include'
-//       })
-//       const parsedResponse = await userResponse.json();
-//       console.log(parsedResponse)
-//       this.setState({
-//         currentUser: parsedResponse.data
-//       })
-//   } catch (error) {
-//       console.log(error)
-//   }
-// }
+  updateUser = (info)=>{
+    console.log('updated user')
+    this.setState({
+      currentUser: (info)
+    })
+  }
   render(){
     const {registered, logged, password, message, name, bear, drop, munchie, currentUser} = this.state
     return (
@@ -186,7 +177,7 @@ class App extends Component {
             <Route exact path={routes.PROFILE} render={()=> <ProfilePage logged={logged} currentUser={currentUser} />} />
             <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} />} />
             <Route exact path={routes.DROP} render={()=> <Drop drop={drop} />} />
-            <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} />} />
+            <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} updateUser={this.updateUser} />} />
           </Switch>
         </div>
       </div>

@@ -5,7 +5,8 @@ import JournalEntry from './entry';
 class Munchie extends Component {
     state = {
         date: '',
-        newEntry: false
+        newEntry: false,
+        message: ''
     }
     paperForEntry = ()=>{
         console.log('paper!')
@@ -26,7 +27,11 @@ class Munchie extends Component {
             })
             const parsedResponse = await entryResponse.json();
             console.log(parsedResponse);
-            
+            this.props.updateUser(parsedResponse.user)
+            this.setState({
+                newEntry: false,
+                message: parsedResponse.message
+            })
         } catch (error) {
             console.log(error)
         }
@@ -37,7 +42,7 @@ class Munchie extends Component {
         })
     }
     render(){
-        const {date, newEntry} = this.state
+        const {date, newEntry, message} = this.state
         const {munchie} = this.props
         return(
             <div className='munch-box'>
@@ -48,7 +53,10 @@ class Munchie extends Component {
                 <p>{munchie.prompt}</p>
                 {newEntry
                 ? <JournalEntry munchie={munchie} date={date} cancelNewEntry={this.cancelNewEntry} saveNewEntry={this.saveNewEntry} />
-                : <button onClick={this.paperForEntry}>New journal entry</button> 
+                : <div> 
+                    <p>{message}</p>
+                    <button onClick={this.paperForEntry}>New journal entry</button> 
+                </div>
                 }
             </div>
         )

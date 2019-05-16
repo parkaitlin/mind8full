@@ -1,0 +1,7 @@
+.react-calendar__month-view__days__day--weekend {
+    color: #0fac82;
+}
+
+.react-calendar {
+    border-radius: 6px;
+}
