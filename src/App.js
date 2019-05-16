@@ -16,6 +16,7 @@ import About from './about/about';
 import Bear from './snacks/bear';
 import Drop from './snacks/drop';
 import Munchie from './snacks/munch';
+import ProfilePage from './profile/profilePage';
 import { async } from 'q';
 
 class App extends Component {
@@ -165,7 +166,7 @@ class App extends Component {
             <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
             <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} getDrop={this.getDrop} logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
-            <Route exact path={routes.PROFILE} render={()=> <div>Profile | Calendar | Journal</div>} />
+            <Route exact path={routes.PROFILE} render={()=> <ProfilePage />} />
             <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} />} />
             <Route exact path={routes.DROP} render={()=> <Drop drop={drop} />} />
             <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} />} />

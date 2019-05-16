@@ -20,6 +20,9 @@ class JournalEntry extends Component {
     saveEntry = ()=>{
         console.log('saved!')
         this.props.saveNewEntry(this.state)
+        this.setState({
+            entry: ''
+        })
     }
     render(){
         const {entry} = this.state;
