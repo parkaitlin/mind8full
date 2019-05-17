@@ -9,6 +9,7 @@ import EntryModal from './entryModal';
 class ProfilePage extends Component {
     state = {
         showEntryModal: false,
+        amtOfEntries: this.props.currentUser.journal.length,
         key: 0
     }
     viewEntry = (info)=>{
@@ -25,7 +26,7 @@ class ProfilePage extends Component {
     }
     deleteEntry = async ()=>{
         try {
-            const data = await fetch(`/user/entry/${this.props.currentUser.journal[this.state.key]._id}`, {
+            const data = await fetch(`/entry/${this.props.currentUser.journal[this.state.key]._id}`, {
                 method: 'DELETE',
                 credentials: 'include',
                 body: JSON.stringify(this.state),
@@ -35,13 +36,18 @@ class ProfilePage extends Component {
             })
             const parsedData = await data.json();
             console.log(parsedData)
+            this.setState({
+                showEntryModal: false,
+                amtOfEntries: parsedData.user.journal.length
+            })
+            this.props.updateUser(parsedData.user);
         } catch (error) {
             console.log(error)
         }
     }
     render(){
+        const {amtOfEntries} = this.state
         const {logged, currentUser} = this.props
-        console.log(logged, this.props.currentUser.journal)
         return(
             logged 
             ? <main>
@@ -64,10 +70,10 @@ class ProfilePage extends Component {
                 </div>
                  <EntryModal show={this.state.showEntryModal} closeEntry={this.closeEntry} deleteEntry={this.deleteEntry}>
                     <div className="entry-page">
-                        <h6>quote: {currentUser.journal[this.state.key].quote}</h6>
-                        <p>prompt: {currentUser.journal[this.state.key].prompt}</p>
-                        <p>date of entry: {currentUser.journal[this.state.key].date}</p>
-                        <p>{currentUser.journal[this.state.key].entry}</p>
+                        <h6>quote: {amtOfEntries > 0 ? currentUser.journal[this.state.key].quote : 'N/A'}</h6>
+                        <p>prompt: {amtOfEntries > 0 ? currentUser.journal[this.state.key].prompt : 'N/A'}</p>
+                        <p>date of entry: {amtOfEntries > 0 ? currentUser.journal[this.state.key].date : 'N/A'}</p>
+                        <p>{amtOfEntries > 0 ? currentUser.journal[this.state.key].entry : 'N/A'}</p>
                     </div>
                  </EntryModal> 
              </main>
