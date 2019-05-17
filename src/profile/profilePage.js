@@ -4,13 +4,29 @@ import './profile.css'
 
 import Calendar from './calendar'
 import EntryModal from './entryModal';
+import ProfileModal from './profileModal';
 // import { async } from 'q';
 
 class ProfilePage extends Component {
     state = {
         showEntryModal: false,
+        showProfileModal: false,
         amtOfEntries: this.props.currentUser.journal.length,
-        key: 0
+        key: 0,
+        firstName: this.props.currentUser.firstName,
+        lastName: this.props.currentUser.lastName,
+        email: this.props.currentUser.email,
+        password: null
+    }
+    viewProfile = ()=>{
+        this.setState({
+            showProfileModal: true
+        })
+    }
+    closeProfile = ()=>{
+        this.setState({
+            showProfileModal: false
+        })
     }
     viewEntry = (info)=>{
         console.log('view entry function')
@@ -45,8 +61,14 @@ class ProfilePage extends Component {
             console.log(error)
         }
     }
+    handleChange = (e)=>{
+        console.log(e.target.value)
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
     render(){
-        const {amtOfEntries} = this.state
+        const {amtOfEntries, firstName, lastName, email, password} = this.state
         const {logged, currentUser} = this.props
         return(
             logged 
@@ -55,7 +77,7 @@ class ProfilePage extends Component {
                     <div className='user-info'>
                         <h3>{currentUser.firstName}</h3>
                         <h5>{currentUser.level}</h5>
-                        <button>edit profile</button>
+                        <button onClick={this.viewProfile}>edit profile</button>
                     </div>
                     <div className='calendar'>
                         <Calendar />
@@ -68,6 +90,12 @@ class ProfilePage extends Component {
                         })}
                     </div>
                 </div>
+                 <ProfileModal show={this.state.showProfileModal} closeProfile={this.closeProfile} deleteProfile={this.props.deleteUser} userInfo={this.state} editProfile={this.props.editUser}>
+                        first Name: <input type='text' name="firstName" value={firstName} onChange={this.handleChange}/>
+                        last Name: <input type='text' name="lastName" value={lastName} onChange={this.handleChange}/>
+                        email: <input type='text' name="email" value={email} onChange={this.handleChange}/>
+                        password: <input type='password' name="password" value={password} onChange={this.handleChange}/>
+                 </ProfileModal>
                  <EntryModal show={this.state.showEntryModal} closeEntry={this.closeEntry} deleteEntry={this.deleteEntry}>
                     <div className="entry-page">
                         <h6>quote: {amtOfEntries > 0 ? currentUser.journal[this.state.key].quote : 'N/A'}</h6>

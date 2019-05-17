@@ -17,6 +17,7 @@ import Bear from './snacks/bear';
 import Drop from './snacks/drop';
 import Munchie from './snacks/munch';
 import ProfilePage from './profile/profilePage';
+import { async } from 'q';
 // import { async } from 'q';
 
 class App extends Component {
@@ -170,6 +171,41 @@ class App extends Component {
       currentUser: (info)
     })
   }
+  deleteUser = async()=>{
+    try {
+      const data = await fetch('/user/deactivate', {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const parsedData = await data.json();
+      this.setState({
+        logged: false,
+        message: parsedData.message
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  editUser = async(info)=>{
+    try {
+      const data = await fetch('/user/edit', {
+        method: 'PUT',
+        credentials: 'include',
+        body: JSON.stringify(info),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const parsedData = await data.json();
+      console.log(parsedData)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   render(){
     const {registered, logged, password, message, name, bear, drop, munchie, currentUser} = this.state
     return (
@@ -184,7 +220,7 @@ class App extends Component {
             <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
             <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
-            <Route exact path={routes.PROFILE} render={()=> <ProfilePage logged={logged} currentUser={currentUser} updateUser={this.updateUser} />} />
+            <Route exact path={routes.PROFILE} render={()=> <ProfilePage logged={logged} deleteUser={this.deleteUser} currentUser={currentUser} editUser={this.editUser} updateUser={this.updateUser} />} />
             <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} />} />
             <Route exact path={routes.DROP} render={()=> <Drop drop={drop} />} />
             <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} updateUser={this.updateUser} />} />
