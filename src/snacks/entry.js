@@ -29,7 +29,7 @@ class JournalEntry extends Component {
         return(
             <div className="paper">
                 <p className='date'>{this.props.date}</p>
-                    <input type="text" name="entry" value={entry} onChange={this.handleChange} />
+                    <input className='entry-input' type="text" name="entry" value={entry} onChange={this.handleChange} />
                     <button onClick={this.props.cancelNewEntry}>cancel</button>
                     <button onClick={this.saveEntry}>save entry</button>
             </div>

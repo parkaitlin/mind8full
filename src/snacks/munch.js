@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
+import './munch.css'
 import JournalEntry from './entry';
 // import { async } from 'q';
 
@@ -43,22 +45,26 @@ class Munchie extends Component {
     }
     render(){
         const {date, newEntry, message} = this.state
-        const {munchie} = this.props
+        const {munchie, logged} = this.props
         return(
-            <div className='munch-box'>
-                <h4>{munchie.title}</h4>
-                <h6>{munchie.quote}}</h6>
-                <h6>-{munchie.author}}</h6>
-                <p>something to munch on...</p><br/>
-                <p>{munchie.prompt}</p>
+            logged
+            ? <div className='munch-box'>
+                <h4 className="title">{munchie.title}</h4>
+                <h6 className='munch-quote'>"{munchie.quote}"</h6>
+                <h6 className= 'author'>-{munchie.author}</h6>
+                <p className='munch-slogan'>something to munch on...</p><br/>
+                <div className='prompt-newEntry'>
+                <div className='prompt-box'><p className='prompt'>{munchie.prompt}</p></div>
                 {newEntry
                 ? <JournalEntry munchie={munchie} date={date} cancelNewEntry={this.cancelNewEntry} saveNewEntry={this.saveNewEntry} />
                 : <div> 
                     <p>{message}</p>
-                    <button onClick={this.paperForEntry}>New journal entry</button> 
+                    <button className='entry-button' onClick={this.paperForEntry}>New journal entry</button> 
                 </div>
                 }
+                </div>
             </div>
+            : <Redirect to="/" />
         )
     }
 }

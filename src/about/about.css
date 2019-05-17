@@ -1,15 +1,29 @@
 .about-string {
     font-weight: 200;
+    color: #794044;
+    font-size: 20px;
+    margin: 20px 0;
+    font-family: 'Quicksand', sans-serif;
 }
 span {
     font-weight: bold;
 }
 
 .about-para {
-    border: 2px solid black;
+    color: #794044;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 900px;
     border-radius: 8px;
     margin: auto 60px;
     padding: 10px;
     font-weight: 200;
     font-size: 12px;
+    background-image: url('../img/clean-gray-paper.png');
+    background-color: #ffe4c4;
+}
+h4 {
+    color: #794044;
+    font-family: 'Comfortaa', cursive;
+    font-size: 30px;
+    margin: 0 0 25px 0;
 }

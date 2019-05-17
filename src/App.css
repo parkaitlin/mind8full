@@ -1,38 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat|Comfortaa|Indie+Flower|Julius+Sans+One|Quicksand&display=swap');
+
+
 .App {
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 800px;
+  background-image: url('./img/brick-wall-dark.png')
 }
 
 .container {
-  width: 800px;
-  height: 530px;
-  border: 2px solid black;
+  width: 65%;
+  height: 600px;
+  border: 2px solid #794044;
   border-radius: 8px;
+  margin: 80px;
+  background-color: #f9f7f1;
 }
 
+.under-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .welcome {
-  color: green 
-  /* style is just as a placeholder will change later */
+  font-family: 'Comfortaa', cursive;
+  font-size: 70px;
+  color: #794044;
+  margin-top: 45px;
+  margin-bottom: 10px; 
 }
 
 .navbar {
-  border: 1px solid red;
-  margin: 12px 15px; 
+  border: 3px solid #794044;
+  background-color: #794044;
   display: flex;
+  margin: 12px 15px; 
   border-radius: 8px;
-  justify-content: space-between;
+  font-family: 'Quicksand', sans-serif;
+  color: #ffe4c4;
+  font-weight: bold;
 }
 
-.navbar-links{
+.nav-one {
   display: flex;
   justify-content: space-between;
-  width: 30%;
+
+}
+
+.logo {
+  margin: 7px 15px;
+  font-size: 20px;
+}
+.navTwo-links {
+  display: flex;
+  margin-left: 420px;
+}
+.navbar-links{
+  display: flex;
+  height: 33px;
+  margin-top: 3px;
+  margin-right: 15px; 
 }
 .navbar-link {
   text-decoration: none;
+  color: #ffe4c4;
+  border: 2px solid #ffe4c4;
+  border-radius: 10px;
+  font-size: 15px;
+  width: 65px;
+  margin-left: 30px;
+  padding-top: 3px;
+  display: flex;
+  justify-content: center;
 }
 .active {
-  text-decoration: underline;
-  text-decoration-color: greenyellow;
+  background-color: #ffe4c4;
+  color: #794044;
+}
+
+.registration-box {
+  border: 2px solid #794044;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 55px; 
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px
 }

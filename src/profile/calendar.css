@@ -5,3 +5,22 @@
 .react-calendar {
     border-radius: 6px;
 }
+
+.check-in {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.journal {
+    width: 250px;
+    height: 300px;
+}
+
+.cal-jour {
+    display: flex;
+}
+
+.calendar {
+    margin: 10px 10px;
+
+}

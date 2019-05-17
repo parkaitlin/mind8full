@@ -32,7 +32,8 @@ class App extends Component {
     drop: '',
     dropCategory: ['motivational', 'positive', 'hopeful', 'optimism', 'happiness', 'compassion', 'perseverance'],
     munchie: '',
-    currentUser: ''
+    currentUser: '',
+    loading: true
   }
   register = async (info)=>{
     try {
@@ -127,7 +128,8 @@ class App extends Component {
       const parsedData = await data.json();
       console.log(parsedData)
       this.setState({
-        bear: parsedData.data.contents
+        bear: parsedData.data.contents,
+        loading: false
       })
       
     } catch (error) {
@@ -145,7 +147,8 @@ class App extends Component {
       const parsedData = await data.json();
       console.log(parsedData)
       this.setState({
-        drop: parsedData.data.contents
+        drop: parsedData.data.contents,
+        loading: false
       })
     } catch (error) {
       console.log(error)
@@ -159,7 +162,8 @@ class App extends Component {
       const parsedData = await data.json();
       console.log(parsedData)
       this.setState({
-        munchie: parsedData.data
+        munchie: parsedData.data,
+        loading: false
       })
     } catch (error) {
       console.log(error)
@@ -207,7 +211,7 @@ class App extends Component {
     }
   }
   render(){
-    const {registered, logged, password, message, name, bear, drop, munchie, currentUser} = this.state
+    const {registered, logged, password, message, name, bear, drop, munchie, currentUser, loading} = this.state
     return (
       <div className="App">
         <div className="container">
@@ -218,12 +222,12 @@ class App extends Component {
           <Switch>
             <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
             <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
-            <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
+            <Route exact path={routes.HOME} render={()=> <Home resetLoader={this.resetLoader} getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
             <Route exact path={routes.PROFILE} render={()=> <ProfilePage logged={logged} deleteUser={this.deleteUser} currentUser={currentUser} editUser={this.editUser} updateUser={this.updateUser} />} />
-            <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} />} />
-            <Route exact path={routes.DROP} render={()=> <Drop drop={drop} />} />
-            <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} updateUser={this.updateUser} />} />
+            <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} logged={logged} loading={loading} />} />
+            <Route exact path={routes.DROP} render={()=> <Drop drop={drop} logged={logged} />} />
+            <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} logged={logged} updateUser={this.updateUser} />} />
           </Switch>
         </div>
       </div>

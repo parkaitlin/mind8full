@@ -9,12 +9,13 @@
   
 .modal-main {
       position:fixed;
-      background: white;
+      background: #f9f7f1;
       width: 80%;
       height: auto;
       top:50%;
       left:50%;
       transform: translate(-50%,-50%);
+      overflow-y: scroll;
 }
 
 .display-block {
@@ -25,4 +26,17 @@
   display: none;
 }
   
-  
+.modal-quote {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.entry-page {
+  padding: 7px;
+}
+
+.profile-modal {
+  width: 300px;
+  height: 200px;
+  padding: 15px;
+}

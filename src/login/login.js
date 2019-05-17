@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
+import './login.css'
 
 class Login extends Component {
     state = {
@@ -24,11 +25,11 @@ class Login extends Component {
         return(
             logged
             ? <Redirect to='/home'/>
-            : <div>
-                <h2 className='welcome'>welcome</h2>
+            : <div className='under-nav login'>
+                <h2 className='welcome'>WELCOME</h2>
+                        <p className='message'>{message}</p>
                 <div className="login-box">
                     <form onSubmit={this.handleSubmit}>
-                        <p className='message'>{message}</p>
                         email: <input type='text' name='email' value={email} onChange={this.handleChange} /><br/>
                         password: <input type='password' name='password' value={password} onChange={this.handleChange} /><br/>
                         <button type='submit'>login</button>
