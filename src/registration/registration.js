@@ -7,7 +7,8 @@ class Registration extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        password: ''
+        password: '',
+        level: 'exploring meditator'
     }
     handleChange = (e)=>{
         this.setState({

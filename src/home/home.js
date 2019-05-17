@@ -21,7 +21,7 @@ const Home = (props)=>{
         <div className='home-links'>
             <h6><NavLink to={routes.BEAR} onClick={props.getBear}>a gummy bear</NavLink></h6>
             <h6><NavLink to={routes.DROP} onClick={props.getDrop}>a cough drop</NavLink></h6>
-            <h6><NavLink to={routes.MUNCH}>something to munch on ...</NavLink></h6>
+            <h6><NavLink to={routes.MUNCH} onClick={props.getMunchie}>something to munch on ...</NavLink></h6>
         </div>
     </div>
     : <Redirect to='/' />

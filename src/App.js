@@ -30,12 +30,7 @@ class App extends Component {
     bearCategory: ['inspire', 'inspirational', 'kindness', 'inspiration', 'determined', 'grit', "inspirational-attitude", "inspirational-happiness"],
     drop: '',
     dropCategory: ['motivational', 'positive', 'hopeful', 'optimism', 'happiness', 'compassion', 'perseverance'],
-    munchie: {
-      title: "Exercise Your Mind",
-      quote: "Possessing a creative mind...is something like having a border collie for a pet: it needs to work, or else it will cause you and outrageous amount of trouble. Give your mind a job to so, or else it will find a job to do, and you might not like the job it invents",
-      author: "Elizabeth Gilbert",
-      prompt: "It only takes a few minutes to realize that your mind doesn't have an on/off switch. As Elizabeth Gilbert says, it's more like a large and energetic dog. Our minds give us the most fabulous experiences with their rambunctious frolicking, but they can be quite destructive. To give your mind something to do, put it to work noticing beauty and joy in the word. Right now ask it to put aside the depressing headlines from the day's news, the hurtful comment that a colleague made at work, the like of items you need to buy at the grocery store. Ask it to think of ten beautiful things it has encountered in the last 24 hours, and ask it to go on noticing beauty throughout the dat to come."
-    },
+    munchie: '',
     currentUser: ''
   }
   register = async (info)=>{
@@ -54,7 +49,8 @@ class App extends Component {
         this.setState({
           registered: true,
           logged: true,
-          name: parsedResponse.user.firstName
+          name: parsedResponse.user.firstName,
+          currentUser: parsedResponse.user
         })
       } else {
         this.setState({
@@ -154,6 +150,20 @@ class App extends Component {
       console.log(error)
     }
   }
+  getMunchie = async ()=>{
+    try {
+      const data = await fetch('/user/random', {
+        credentials: 'include'
+      });
+      const parsedData = await data.json();
+      console.log(parsedData)
+      this.setState({
+        munchie: parsedData.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   updateUser = (info)=>{
     console.log('updated user')
     this.setState({
@@ -172,7 +182,7 @@ class App extends Component {
           <Switch>
             <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
             <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
-            <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} getDrop={this.getDrop} logged={logged} registered={registered} name={name} />} />
+            <Route exact path={routes.HOME} render={()=> <Home getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
             <Route exact path={routes.ABOUT} render={()=> <About />} />
             <Route exact path={routes.PROFILE} render={()=> <ProfilePage logged={logged} currentUser={currentUser} />} />
             <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} />} />
