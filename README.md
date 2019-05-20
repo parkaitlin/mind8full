@@ -14,7 +14,7 @@ A Mindful Morning by David Dillard-Wright
 
 ### Wireframes with Sketch
 
-![Sketch Screenshot](http://url/to/img.png)
+![Sketch Screenshot](https://github.com/parkaitlin/frontend-react-p3/blob/master/src/img/Screen%20Shot%202019-05-17%20at%2010.20.36%20AM.png?raw=true)
 
 ### Tech & Frameworks
 - React
