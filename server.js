@@ -2,7 +2,7 @@ const createError = require('http-errors')
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cors = require('cors');
+// const cors = require('cors');
 const session = require('express-session');
 const path = require('path')
 
@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.static(__dirname))
 app.use(express.static(path.join(__dirname, 'build')))
-app.use(cors());
+// app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -34,7 +34,7 @@ app.use(session({
 //     optionsSuccessStatus: 200,
 // };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Routers
 app.use('/user', userRouter);
