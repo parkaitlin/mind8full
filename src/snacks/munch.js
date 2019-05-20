@@ -11,7 +11,6 @@ class Munchie extends Component {
         message: ''
     }
     paperForEntry = ()=>{
-        console.log('paper!')
         this.setState({
             newEntry: true,
             date: new Date().toDateString()
@@ -28,7 +27,6 @@ class Munchie extends Component {
                 }
             })
             const parsedResponse = await entryResponse.json();
-            console.log(parsedResponse);
             this.props.updateUser(parsedResponse.user)
             this.setState({
                 newEntry: false,

@@ -29,7 +29,6 @@ class ProfilePage extends Component {
         })
     }
     viewEntry = (info)=>{
-        console.log('view entry function')
         this.setState({
             showEntryModal: true,
             key: info
@@ -51,7 +50,6 @@ class ProfilePage extends Component {
                 }
             })
             const parsedData = await data.json();
-            console.log(parsedData)
             this.setState({
                 showEntryModal: false,
                 amtOfEntries: parsedData.user.journal.length
@@ -62,7 +60,6 @@ class ProfilePage extends Component {
         }
     }
     handleChange = (e)=>{
-        console.log(e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })

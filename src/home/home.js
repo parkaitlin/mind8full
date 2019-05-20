@@ -7,8 +7,6 @@ import * as routes from '../constants/routes';
 
 const Home = (props)=>{
     const {registered, logged, name} = props
-    console.log(registered)
-    console.log(logged)
     return(
         logged
         ? <div className='under-nav'>

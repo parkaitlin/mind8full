@@ -7,7 +7,6 @@ class PersonalCalendar extends Component {
         date: new Date(),
     }
     handleChange = date => {
-        console.log(date)
         this.setState({
             date
         })

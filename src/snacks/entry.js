@@ -12,13 +12,11 @@ class JournalEntry extends Component {
         entry: ''
     }
     handleChange = (e)=>{
-        console.log(e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
     }
     saveEntry = ()=>{
-        console.log('saved!')
         this.props.saveNewEntry(this.state)
         this.setState({
             entry: ''

@@ -28,11 +28,11 @@ app.use(session({
     saveUninitialized: false
 }));
 
-const corsOptions = {
-    origin: "http://localhost:3000",//"https://mind8full.herokuapp.com/",//where the front end is deployed,
-    credentials: true,
-    optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//     origin: "http://localhost:3000" //where the front end is deployed,
+//     credentials: true,
+//     optionsSuccessStatus: 200,
+// };
 
 app.use(cors(corsOptions));
 

@@ -14,7 +14,6 @@ module.exports = {
                 }
             })
             const parsedResponse = await bearResponse.json()
-            console.log(parsedResponse)
             res.json({
                 success:true,
                 data:parsedResponse,
@@ -47,7 +46,6 @@ module.exports = {
         }
     },
     updateProfile: async (req, res)=>{
-        console.log(req.body)
         if(!req.body.password){
             delete req.body.password
         }                        
@@ -93,7 +91,6 @@ module.exports = {
                 data: foundUser,
                 message: 'found user info for portfolio'
             })
-            console.log('try succeeded')
         } catch (error) {
             res.json({
                 error: error
@@ -103,7 +100,6 @@ module.exports = {
     munch: (req, res)=>{
         const i = Math.floor(Math.random() * Munchies.length)
         const munchie = Munchies[i]
-        console.log(munchie)
         res.json({
             status: 200,
             data: munchie,

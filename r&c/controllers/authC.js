@@ -4,19 +4,14 @@ module.exports = {
     authorize: async (req, res)=>{
         try {
             const foundUser = await User.findOne({email: req.body.email});
-            console.log(foundUser)
-            // foundUser.findLevel;
-            // if(foundUser){
-            //     console.log(foundUser.validPassword(req.body.password))
+
                 if(foundUser.validPassword(req.body.password)){
-                    console.log('valid password')
                     req.session.message= '';
                     req.session.userId = foundUser._id;
                     req.session.userCheckIn = new Date().toDateString();
                     foundUser.calendar.push(req.session.userCheckIn);
                     foundUser.save();
 
-                    console.log(req.session, '<=== req.session')
                     res.json({
                         status: 205,
                         data: 'login successful',
@@ -24,21 +19,12 @@ module.exports = {
                         session: req.session
                     })
                 } else {
-                    console.log('invalid password')
                     req.session.message = 'Unfortunately the login information provided, does not match our records. Please try again.'
                     res.json({
                         data: 'invalid password',
                         message: req.session.message
                     })
                 }
-            // } else {
-            //     console.log('invalid email')
-            //     req.session.message = 'Unfortunately the login information provided, does not match our records. Please try again.'
-            //     res.json({
-            //         data: 'invalid email',
-            //         message: req.session.message
-            //     })
-            // }
         } catch (error) {
             req.session.message = 'Unfortunately the login information provided, does not match our records. Please try again.'
             res.json({
@@ -50,7 +36,6 @@ module.exports = {
     },
     new: async (req, res)=>{
         try {
-            console.log(req.body, '<==req.body')
             const newUser = await User.create(req.body);
             // newUser.findLevel();
             req.session.message = '';
