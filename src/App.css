@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Caveat|Comfortaa|Indie+Flower|Julius+Sans+One|Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Catamaran|Quicksand|Sacramento&display=swap');
 
+*,*::before,*::after{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
 
-.App {
+/* .App {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -86,4 +91,4 @@
   margin-top: 55px; 
   font-family: 'Quicksand', sans-serif;
   font-size: 18px
-}
+} */

@@ -1,0 +1,16 @@
+.home-links {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+a {
+   font-family: 'Quicksand', sans-serif;;
+    color: #794044;
+}
+
+h6 {
+    color: #794044;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px
+}

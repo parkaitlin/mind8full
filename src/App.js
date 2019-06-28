@@ -1,27 +1,28 @@
 import React, {Component} from 'react';
-import './App.css';
+import './App.css'
 
-import * as routes from './constants/routes';
+import * as routes from './Components/constants/routes';
 import{Switch, Route} from 'react-router-dom';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+
 //NavBar:
-import NavOne from './navbars/navOne';
-import NavTwo from './navbars/navTwo';
+import NavOne from './Components/NavBar/navOne';
 
 //Components:
-import Login from './login/login';
-import Registration from './registration/registration';
-import Home from './home/home';
-import About from './about/about';
-import Bear from './snacks/bear';
-import Drop from './snacks/drop';
-import Munchie from './snacks/munch';
-import ProfilePage from './profile/profilePage';
-import { async } from 'q';
-// import { async } from 'q';
+import Enter from './Components/Enter/Enter';
+import Login from './Components/Login/Login';
+import Registration from './Components/Registration/Registration';
+import Home from './Components/Home/Home';
+import About from './Components/About/About';
+import Bear from './Components/Snacks/Bear';
+import Drop from './Components/Snacks/Drop';
+import Munchie from './Components/Snacks/Munch';
+import Profile from './Components/Profile/Profile';
 
 class App extends Component {
   state = {
+    enter: false,
     registered: false,
     logged: false,
     password: '',
@@ -210,26 +211,31 @@ class App extends Component {
       console.log(error)
     }
   }
+  enterBtn = ()=>{
+    console.log('user enter')
+  }
   render(){
-    const {registered, logged, password, message, name, bear, drop, munchie, currentUser, loading} = this.state
+    const {enter, registered, logged, password, message, name, bear, drop, munchie, currentUser, loading} = this.state
     return (
       <div className="App">
-        <div className="container">
-          {logged
-          ? <NavTwo logout={this.logout} getUser={this.getUser} />
-          : <NavOne clearMessage={this.clearMessage} />
-          }
-          <Switch>
-            <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
-            <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
-            <Route exact path={routes.HOME} render={()=> <Home resetLoader={this.resetLoader} getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
-            <Route exact path={routes.ABOUT} render={()=> <About />} />
-            <Route exact path={routes.PROFILE} render={()=> <ProfilePage logged={logged} deleteUser={this.deleteUser} currentUser={currentUser} editUser={this.editUser} updateUser={this.updateUser} />} />
-            <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} logged={logged} loading={loading} />} />
-            <Route exact path={routes.DROP} render={()=> <Drop drop={drop} logged={logged} />} />
-            <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} logged={logged} updateUser={this.updateUser} />} />
-          </Switch>
-        </div>
+        {enter && <NavOne logged={logged} logout={this.logout} getUser={this.getUser} clearMessage={this.clearMessage}/>}
+        <Route render={()=> (
+          <TransitionGroup>
+            <CSSTransition timeout={300} classNames="fade">
+              <Switch>
+                <Route exact path={routes.ENTER} render={() => <Enter enterBtn={this.enterBtn}/>} />
+                <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
+                <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
+                <Route exact path={routes.HOME} render={()=> <Home resetLoader={this.resetLoader} getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
+                <Route exact path={routes.ABOUT} render={()=> <About />} />
+                <Route exact path={routes.PROFILE} render={()=> <Profile logged={logged} deleteUser={this.deleteUser} currentUser={currentUser} editUser={this.editUser} updateUser={this.updateUser} />} />
+                <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} logged={logged} loading={loading} />} />
+                <Route exact path={routes.DROP} render={()=> <Drop drop={drop} logged={logged} />} />
+                <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} logged={logged} updateUser={this.updateUser} />} />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )}/>
       </div>
     );
   }

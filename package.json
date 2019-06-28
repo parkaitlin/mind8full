@@ -3,17 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "dot": "^1.1.2",
-    "env": "0.0.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-calendar": "^2.19.0",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.1",
-    "react-spinners": "^0.5.4",
-    "styled-components": "^4.2.0",
-    "typescript": "^3.4.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
@@ -26,13 +18,24 @@
     "mongoose": "^5.5.7",
     "morgan": "^1.9.1",
     "node-fetch": "^2.5.0",
-    "normalize-port": "^1.0.0"
+    "normalize-port": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-calendar": "^2.19.0",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1",
+    "react-spinners": "^0.5.4",
+    "react-transition-group": "^4.1.1",
+    "styled-components": "^4.2.0",
+    "typescript": "^3.4.5"
   },
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "server": "nodemon ./bin/www",
     "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
@@ -50,5 +53,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3030"
+  "proxy": "http://localhost:3080"
 }

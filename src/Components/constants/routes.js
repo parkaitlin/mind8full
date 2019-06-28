@@ -1,0 +1,11 @@
+export const LOGIN ="/login";
+export const REGISTER ="/register";
+export const ABOUT = '/about';
+export const HOME = '/home';
+export const PROFILE = '/profile';
+export const LOGOUT = '/login';
+export const BEAR = '/gummy';
+export const DROP = '/cough';
+export const MUNCH = '/munch';
+export const CONTACT = 'contact';
+export const ENTER = '/'
