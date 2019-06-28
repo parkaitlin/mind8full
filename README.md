@@ -1,6 +1,6 @@
-# Mind|Full
+# Mind8Full
 
-mind | full is an application that hopes to provide a space for personal meditation. We want our visitors to take care of their mental health in the method they see fit. As you may know meditation takes many forms, at mind | full we do it in the form of snacks: gummy bears, cough drops, and some munchies.
+mind8full is an application that hopes to provide a space for personal meditation. We want our visitors to take care of their mental health in the method they see fit. As you may know meditation takes many forms, at mind | full we do it in the form of snacks: gummy bears, cough drops, and some munchies.
 
 Let us explain… the first two are simply sending good vibes depending on what you need in the moment. This usually includes music, a serene backdrop, and a quote to ponder about. Gummy bears are for when you are looking for some inspiration, and cough drops are for those days you need a little mood booster.
 
