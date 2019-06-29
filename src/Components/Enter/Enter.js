@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import * as routes from '../constants/routes';
+import {Wrapper} from '../../style';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfinity } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfinity } from '@fortawesome/free-solid-svg-icons';
 
 const Landing = styled.div`
     position: absolute;
@@ -51,13 +54,14 @@ const Landing = styled.div`
     }
     button {
         font-family: 'Catamaran', sans-serif;
-        font-size: 2.5em;
+        font-size: 2.2em;
         font-weight: 900;
         border-radius: 10px;
         border: 3px solid white;
         background-color: transparent;
         color: white;
         width: 3.8em;
+        transition: 0.8s;
     }
     button:hover {
         color: rgb(20, 139, 159);
@@ -89,11 +93,13 @@ const Landing = styled.div`
 
 const Enter = (props)=>{
     return(
-        <Landing>
-            <h1>mind<FontAwesomeIcon icon={faInfinity} className="icon"/>full</h1>
-            <button onClick={props.enterBtn}>Enter</button>
-            <div className="cloud"></div> 
-        </Landing>
+        <Wrapper>
+            <Landing>
+                <h1>mind<FontAwesomeIcon icon={faInfinity} className="icon"/>full</h1>
+                <Link to={routes.LOGIN}><button>Enter</button></Link>
+                <div className="cloud"></div> 
+            </Landing>
+        </Wrapper>
     )
 }
 

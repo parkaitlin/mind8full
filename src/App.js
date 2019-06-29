@@ -7,7 +7,7 @@ import{Switch, Route} from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 //NavBar:
-import NavOne from './Components/NavBar/navOne';
+import NavBar from './Components/NavBar/Navbar';
 
 //Components:
 import Enter from './Components/Enter/Enter';
@@ -22,7 +22,6 @@ import Profile from './Components/Profile/Profile';
 
 class App extends Component {
   state = {
-    enter: false,
     registered: false,
     logged: false,
     password: '',
@@ -211,19 +210,24 @@ class App extends Component {
       console.log(error)
     }
   }
-  enterBtn = ()=>{
-    console.log('user enter')
-  }
   render(){
-    const {enter, registered, logged, password, message, name, bear, drop, munchie, currentUser, loading} = this.state
+    const {registered, logged, password, message, name, bear, drop, munchie, currentUser, loading} = this.state
     return (
       <div className="App">
-        {enter && <NavOne logged={logged} logout={this.logout} getUser={this.getUser} clearMessage={this.clearMessage}/>}
-        <Route render={()=> (
+        <Route render={({location})=> (
+          <>
+            <TransitionGroup>
+            <CSSTransition key={location.key} timeout={1500} classNames="fade">
+              <Switch location={location}>
+                <Route exact path={routes.ENTER} render={() => <Enter />} />
+                {/* <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} /> */}
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
           <TransitionGroup>
-            <CSSTransition timeout={300} classNames="fade">
-              <Switch>
-                <Route exact path={routes.ENTER} render={() => <Enter enterBtn={this.enterBtn}/>} />
+            <NavBar logged={logged} logout={this.logout} getUser={this.getUser} clearMessage={this.clearMessage}/>
+            <CSSTransition key={location.key} timeout={800} classNames="fadeTwo">
+              <Switch location={location}>
                 <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
                 <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
                 <Route exact path={routes.HOME} render={()=> <Home resetLoader={this.resetLoader} getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
@@ -235,6 +239,7 @@ class App extends Component {
               </Switch>
             </CSSTransition>
           </TransitionGroup>
+          </>
         )}/>
       </div>
     );
