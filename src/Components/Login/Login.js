@@ -3,6 +3,23 @@ import {Redirect} from 'react-router-dom';
 import styled from 'styled-components';
 import { Wrapper } from '../../style';
 
+const LoginPage = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    background-image: linear-gradient(to bottom right, #70e1f5, #ffd194);
+    h2 {
+        font-size: 4em;
+        font-family: 'Quicksand', sans-serif;
+
+    }
+`
 const LoginBox = styled.div`
     
 `
@@ -31,17 +48,17 @@ class Login extends Component {
             logged
             ? <Redirect to='/home'/>
             : <Wrapper>
-                <div className='under-nav login'>
+                <LoginPage>
                     <h2 className='welcome'>WELCOME</h2>
                             <p className='message'>{message}</p>
-                    <div className="login-box">
+                    <LoginBox>
                         <form onSubmit={this.handleSubmit}>
                             email: <input type='text' name='email' value={email} onChange={this.handleChange} /><br/>
                             password: <input type='password' name='password' value={password} onChange={this.handleChange} /><br/>
                             <button type='submit'>login</button>
                         </form>
-                    </div>
-                </div>
+                    </LoginBox>
+                </LoginPage>
             </Wrapper>
         )
     }

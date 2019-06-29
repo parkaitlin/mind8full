@@ -17,7 +17,11 @@ const SideBarBox = styled.div`
         left: 0;
         background-color: #fff;
         overflow: hidden;
-        transition: 0.8s; 
+        transition: 0.8s;
+        z-index: 1; 
+    }
+    .hide-bar > div, .hide-bar > ul {
+        visibility: hidden;
     }
     .show-bar {
         height: 100vh;
@@ -28,6 +32,7 @@ const SideBarBox = styled.div`
         background-color: #fff;
         overflow: hidden;
         transition: 0.8s;
+        z-index: 1;
     }
     li {
         list-style: none;
@@ -69,8 +74,7 @@ const SideBar = (props)=>{
                     <button onClick={props.closeBar}>&times;</button>
                 </div>
                 <ul>
-
-                <li><NavLink to={routes.ABOUT} className='navbar-link' activeClassName='active' onClick={props.clearMessage}>about</NavLink></li>
+                    <li><NavLink to={routes.ABOUT} className='navbar-link' activeClassName='active' onClick={props.clearMessage}>about</NavLink></li>
                 {
                     props.logged
                     ? <>

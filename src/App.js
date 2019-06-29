@@ -215,7 +215,8 @@ class App extends Component {
     return (
       <div className="App">
         <Route render={({location})=> (
-          <><TransitionGroup>
+          <>
+            <TransitionGroup>
             <CSSTransition key={location.key} timeout={1500} classNames="fade">
               <Switch location={location}>
                 <Route exact path={routes.ENTER} render={() => <Enter />} />
