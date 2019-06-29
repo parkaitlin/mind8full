@@ -8,7 +8,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const Bars = styled.div`
     .bars {
         position: fixed;
-        font-size: 3em;
+        font-size: 2em;
         margin: .8em 0 0 .8em;
         color: #2f6276;
         z-index: 1;
