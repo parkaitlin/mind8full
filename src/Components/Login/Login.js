@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Wrapper } from '../../style';
+import * as routes from '../constants/routes';
 
 const LoginPage = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -15,13 +14,52 @@ const LoginPage = styled.div`
     justify-content: center;
     background-image: linear-gradient(to bottom right, #70e1f5, #ffd194);
     h2 {
-        font-size: 4em;
+        font-size: 5em;
+        letter-spacing: .08em;
         font-family: 'Quicksand', sans-serif;
-
+        color: rgb(20, 139, 159);
+        margin-bottom: .5em;
     }
 `
 const LoginBox = styled.div`
-    
+    font-family: 'Catamaran', sans-serif;
+    p {
+        font-size: 1.3em;
+        color: rgb(20, 139, 159);
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5em;
+    }
+    input {
+        width: calc(100% - 5em);
+        border-radius: 5px;
+        border: none;
+        margin: 0 auto;
+        height: 3em;
+        font-size: .8em;
+        padding: 0 .5em;
+        font-family: inherit;
+    }
+    button {
+        font-family: 'Catamaran', sans-serif;
+        font-size: 1em;
+        border-radius: 5px;
+        border: 3px solid white;
+        background-color: transparent;
+        color: white;
+        width: calc(100% - 5em);
+        transition: 0.8s;
+        margin: 0 auto;
+    }
+    button:hover {
+        color: rgb(20, 139, 159);
+        border: 3px solid rgb(20, 139, 159);
+    }
+    .here {
+        color: #fff;
+    }
 `
 
 class Login extends Component {
@@ -53,10 +91,11 @@ class Login extends Component {
                             <p className='message'>{message}</p>
                     <LoginBox>
                         <form onSubmit={this.handleSubmit}>
-                            email: <input type='text' name='email' value={email} onChange={this.handleChange} /><br/>
-                            password: <input type='password' name='password' value={password} onChange={this.handleChange} /><br/>
+                            <input type='text' name='email' placeholder='email' value={email} onChange={this.handleChange} /><br/>
+                            <input type='password' name='password' placeholder='password' value={password} onChange={this.handleChange} /><br/>
                             <button type='submit'>login</button>
                         </form>
+                        <p>First time visitor? Create an account <Link to={routes.REGISTER} className="here">here</Link></p>
                     </LoginBox>
                 </LoginPage>
             </Wrapper>
