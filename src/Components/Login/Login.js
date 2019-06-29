@@ -40,7 +40,7 @@ const LoginPage = styled.div`
 `
 const LoginBox = styled.div`
     font-family: 'Catamaran', sans-serif;
-    animation: focusIn 3s;
+    animation: focusIn 2s;
     p {
         font-size: 1.3em;
         color: rgb(20, 139, 159);

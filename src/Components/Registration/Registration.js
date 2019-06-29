@@ -26,7 +26,7 @@ const RegisterPage = styled.div`
 
 const RegisterBox = styled.div`
     font-family: 'Catamaran', sans-serif;
-    animation: focusIn 2.5s;
+    animation: focusIn 2s;
     > div {
         display: flex;
         flex-direction: column;

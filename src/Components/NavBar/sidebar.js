@@ -21,7 +21,12 @@ const SideBarBox = styled.div`
         z-index: 1; 
     }
     .hide-bar > div, .hide-bar > ul {
-        visibility: hidden;
+        opacity: 0;
+        transition: .1s;
+        
+    }
+    .show-bar > div, .show-bar > ul {
+        animation: fadeIn 1.2s;
     }
     .show-bar {
         height: 100vh;
@@ -31,7 +36,7 @@ const SideBarBox = styled.div`
         left: 0;
         background-color: #fff;
         overflow: hidden;
-        transition: 0.8s;
+        transition: .6s;
         z-index: 1;
     }
     li {
@@ -62,7 +67,16 @@ const SideBarBox = styled.div`
         background-color: transparent;
         border: none;
     }
-
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            letter-spacing: -.7em
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
 `
 const SideBar = (props)=>{
     const showOrHide = props.show ? 'show-bar' : 'hide-bar'
