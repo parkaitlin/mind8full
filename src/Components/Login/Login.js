@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
+import styled from 'styled-components';
+import { Wrapper } from '../../style';
+
+const LoginBox = styled.div`
+    
+`
 
 class Login extends Component {
     state = {
@@ -24,17 +30,19 @@ class Login extends Component {
         return(
             logged
             ? <Redirect to='/home'/>
-            : <div className='under-nav login'>
-                <h2 className='welcome'>WELCOME</h2>
-                        <p className='message'>{message}</p>
-                <div className="login-box">
-                    <form onSubmit={this.handleSubmit}>
-                        email: <input type='text' name='email' value={email} onChange={this.handleChange} /><br/>
-                        password: <input type='password' name='password' value={password} onChange={this.handleChange} /><br/>
-                        <button type='submit'>login</button>
-                    </form>
+            : <Wrapper>
+                <div className='under-nav login'>
+                    <h2 className='welcome'>WELCOME</h2>
+                            <p className='message'>{message}</p>
+                    <div className="login-box">
+                        <form onSubmit={this.handleSubmit}>
+                            email: <input type='text' name='email' value={email} onChange={this.handleChange} /><br/>
+                            password: <input type='password' name='password' value={password} onChange={this.handleChange} /><br/>
+                            <button type='submit'>login</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </Wrapper>
         )
     }
 }
