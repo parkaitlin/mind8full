@@ -19,10 +19,28 @@ const LoginPage = styled.div`
         font-family: 'Quicksand', sans-serif;
         color: rgb(20, 139, 159);
         margin-bottom: .5em;
+        animation: trackingInExpand 3s;
     }
+    .message {
+        visibility: hidden;
+    }
+    @keyframes trackingInExpand {
+        0% {
+            letter-spacing: -0.5em;
+            opacity: 0;
+        }
+        40% {
+            opacity: 0.6;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
 `
 const LoginBox = styled.div`
     font-family: 'Catamaran', sans-serif;
+    animation: focusIn 2s;
     p {
         font-size: 1.3em;
         color: rgb(20, 139, 159);
@@ -44,12 +62,13 @@ const LoginBox = styled.div`
     }
     button {
         font-family: 'Catamaran', sans-serif;
-        font-size: 1em;
+        font-size: 1.2em;
+        font-weight: 600;
         border-radius: 5px;
         border: 3px solid white;
         background-color: transparent;
         color: white;
-        width: calc(100% - 5em);
+        width: calc(100% - 3em);
         transition: 0.8s;
         margin: 0 auto;
     }
@@ -59,6 +78,18 @@ const LoginBox = styled.div`
     }
     .here {
         color: #fff;
+    }
+    @keyframes focusIn {
+        0% {
+            -webkit-filter: blur(12px);
+                    filter: blur(12px);
+            opacity: 0;
+        }
+        100% {
+            -webkit-filter: blur(0px);
+                    filter: blur(0px);
+            opacity: 1;
+        }
     }
 `
 
@@ -88,7 +119,7 @@ class Login extends Component {
             : <Wrapper>
                 <LoginPage>
                     <h2 className='welcome'>WELCOME</h2>
-                            <p className='message'>{message}</p>
+                    <p className='message'>{message}</p>
                     <LoginBox>
                         <form onSubmit={this.handleSubmit}>
                             <input type='text' name='email' placeholder='email' value={email} onChange={this.handleChange} /><br/>
