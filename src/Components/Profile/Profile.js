@@ -4,7 +4,6 @@ import {Redirect} from 'react-router-dom';
 import Calendar from './calendar'
 import EntryModal from './entryModal';
 import ProfileModal from './profileModal';
-// import { async } from 'q';
 
 class ProfilePage extends Component {
     state = {

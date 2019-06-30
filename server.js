@@ -29,7 +29,7 @@ app.use(session({
 }));
 
 const corsOptions = {
-    origin: "http://localhost:3080", //where the front end is deployed,
+    origin: "http://localhost:3080",
     credentials: true,
     optionsSuccessStatus: 200,
 };

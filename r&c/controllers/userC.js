@@ -4,7 +4,6 @@ const Munchies = require('../../models/munchies');
 const fetch = require("node-fetch");
 
 module.exports = {
-    // index is for testing purposes only
     bearAndDrop: async (req,res)=>{
         try {
             const bearResponse = await fetch(`http://quotes.rest/quote/search.json?category=${req.params.category}&minlength=100&maxlength=300`,{

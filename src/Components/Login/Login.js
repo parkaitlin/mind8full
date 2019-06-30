@@ -18,11 +18,14 @@ const LoginPage = styled.div`
         letter-spacing: .08em;
         font-family: 'Quicksand', sans-serif;
         color: rgb(20, 139, 159);
-        margin-bottom: .5em;
+        margin: .5em 0;
         animation: trackingInExpand 3s;
     }
-    .message {
+    .hide-message {
         visibility: hidden;
+    }
+    .show-message {
+        visibility: visible;
     }
     @keyframes trackingInExpand {
         0% {
@@ -113,13 +116,14 @@ class Login extends Component {
     render(){
         const {email, password} = this.state;
         const {logged, message} = this.props;
+        const showOrHide = message !== '' ? 'show-message' : 'hide-message'
         return(
             logged
             ? <Redirect to='/home'/>
             : <Wrapper>
                 <LoginPage>
+                    <p className={showOrHide}>{message}</p>
                     <h2 className='welcome'>WELCOME</h2>
-                    <p className='message'>{message}</p>
                     <LoginBox>
                         <form onSubmit={this.handleSubmit}>
                             <input type='text' name='email' placeholder='email' value={email} onChange={this.handleChange} /><br/>

@@ -1,9 +1,7 @@
-import React, {Component} from 'react';
 import './App.css'
-
-import * as routes from './Components/constants/routes';
+import React, {Component} from 'react';
 import{Switch, Route} from 'react-router-dom';
-
+import * as routes from './Components/constants/routes';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 //NavBar:
