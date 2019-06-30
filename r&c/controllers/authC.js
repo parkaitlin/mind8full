@@ -36,6 +36,7 @@ module.exports = {
     },
     new: async (req, res)=>{
         try {
+            console.log(req.body)
             const newUser = await User.create(req.body);
             // newUser.findLevel();
             req.session.message = '';

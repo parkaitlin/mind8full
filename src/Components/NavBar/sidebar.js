@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import * as routes from '../constants/routes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfinity, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faInfinity } from '@fortawesome/free-solid-svg-icons';
 
 
 const SideBarBox = styled.div`
@@ -92,6 +92,7 @@ const SideBar = (props)=>{
                 {
                     props.logged
                     ? <>
+                    <li><NavLink to={routes.HOME} className='navbar-link' activeClassName='active'>home</NavLink></li>
                     <li><NavLink to={routes.PROFILE} className='navbar-link' activeClassName='active'>journal</NavLink></li>
                     <li><NavLink to={routes.LOGOUT} className='navbar-link' onClick={props.logout}>logout</NavLink></li>
                     </>

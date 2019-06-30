@@ -37,31 +37,31 @@ class App extends Component {
   }
   register = async (info)=>{
     try {
-      const registeredUser = await fetch('/auth/register', {
+      const data = await fetch('/auth/register', {
           method: "POST",
           credentials: 'include',
           body: JSON.stringify(info),
           headers: {
-              'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
           }
       })
-      const parsedResponse = await registeredUser.json();
-      console.log(parsedResponse)
-      if(parsedResponse.data === 'user created'){
+      const parsedData = await data.json();
+      console.log(parsedData)
+      if(parsedData.data === 'user created'){
         this.setState({
           registered: true,
           logged: true,
-          name: parsedResponse.user.firstName,
-          currentUser: parsedResponse.user
+          name: parsedData.user.firstName,
+          currentUser: parsedData.user
         })
       } else {
         this.setState({
-          message: parsedResponse.message  
+          message: parsedData.message  
         })
       }
   } catch (error) {
       console.log(error)
-  } 
+    } 
   }
   login = async (info)=>{
     try {
@@ -214,20 +214,11 @@ class App extends Component {
     const {registered, logged, password, message, name, bear, drop, munchie, currentUser, loading} = this.state
     return (
       <div className="App">
-        <Route render={({location})=> (
-          <>
-            <TransitionGroup>
-            <CSSTransition key={location.key} timeout={1500} classNames="fade">
-              <Switch location={location}>
-                <Route exact path={routes.ENTER} render={() => <Enter />} />
-                {/* <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} /> */}
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
           <TransitionGroup>
             <NavBar logged={logged} logout={this.logout} getUser={this.getUser} clearMessage={this.clearMessage}/>
-            <CSSTransition key={location.key} timeout={800} classNames="fadeTwo">
-              <Switch location={location}>
+            <CSSTransition timeout={800} classNames="fadeTwo">
+              <Switch>
+                <Route exact path={routes.ENTER} render={() => <Enter />} />
                 <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
                 <Route exact path={routes.REGISTER} render={()=> <Registration logged={logged} message={message} register={this.register} />} />
                 <Route exact path={routes.HOME} render={()=> <Home resetLoader={this.resetLoader} getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
@@ -239,8 +230,6 @@ class App extends Component {
               </Switch>
             </CSSTransition>
           </TransitionGroup>
-          </>
-        )}/>
       </div>
     );
   }

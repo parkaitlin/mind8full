@@ -36,7 +36,7 @@ class NavBar extends Component {
                 !showSideBar
                 && <FontAwesomeIcon icon={faBars} className="bars" onClick={this.openBar} />
             }
-            <SideBar closeBar={this.closeBar} show={showSideBar} />
+            <SideBar closeBar={this.closeBar} show={showSideBar} logged={this.props.logged} logout={this.props.logout} />
             </Bars>
         )
     }
