@@ -15,7 +15,7 @@ import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import Bear from './Components/Snacks/Bear';
 import Drop from './Components/Snacks/Drop';
-import Munchie from './Components/Snacks/Munch';
+import Munch from './Components/Snacks/Munch';
 import Profile from './Components/Profile/Profile';
 
 class App extends Component {
@@ -167,7 +167,7 @@ class App extends Component {
                 <Route exact path={routes.PROFILE} render={()=> <Profile logged={logged} deleteUser={this.deleteUser} currentUser={currentUser} editUser={this.editUser} updateUser={this.updateUser} />} />
                 <Route exact path={routes.BEAR} render={()=> <Bear logged={logged} />} />
                 <Route exact path={routes.DROP} render={()=> <Drop logged={logged} />} />
-                <Route exact path={routes.MUNCH} render={()=> <Munchie logged={logged} updateUser={this.updateUser} />} />
+                <Route exact path={routes.MUNCH} render={()=> <Munch logged={logged} updateUser={this.updateUser} />} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>

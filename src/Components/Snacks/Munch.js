@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
-import JournalEntry from './Entry';
 import { Wrapper } from '../../style';
 import { Page, MunchBox } from './style';
 
@@ -20,6 +19,16 @@ class Munch extends Component {
             [e.target.name]: e.target.value
         })
     }
+    componentDidMount(){
+        this.getMunch().then(data=>{
+            this.setState({
+                title: data.data.title,
+                quote: data.data.quote,
+                author: data.data.author,
+                prompt: data.data.prompt
+            })
+        })
+    }
     getMunch = async ()=>{
         try {
           const data = await fetch('/user/random', {
@@ -32,28 +41,18 @@ class Munch extends Component {
           console.log(error)
         }
     }
-    componentDidMount(){
-        this.getMunch().then(data=>{
-            this.setState({
-                title: data.data.title,
-                quote: data.data.quote,
-                author: data.data.author,
-                prompt: data.data.prompt
-            })
-        })
-    }
     paperForEntry = ()=>{
         this.setState({
             newEntry: true,
             date: new Date().toDateString()
         })
     }
-    saveNewEntry = async (info)=>{
+    saveNewEntry = async ()=>{
         try {
             const entryResponse = await fetch('/user/entry', {
                 method: "POST",
                 credentials: 'include',
-                body: JSON.stringify(info),
+                body: JSON.stringify(this.state),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -92,9 +91,8 @@ class Munch extends Component {
                         </div>
                         <p>{date}</p>
                         <textarea className='entry-text' rows="14" cols="48" name="entry" placeholder="Start entry here..." value={entry} onChange={this.handleChange} />
-                        <button onClick={this.saveEntry}>save entry</button>
+                        <button onClick={this.saveNewEntry}>save entry</button>
                     </div>
-                // <JournalEntry munchie={munchie} date={date} cancelNewEntry={this.cancelNewEntry} saveNewEntry={this.saveNewEntry} />
                 : <div className="entry"> 
                         <p>{message}</p>
                         <button className='entry-btn' onClick={this.paperForEntry}>new journal entry</button> 

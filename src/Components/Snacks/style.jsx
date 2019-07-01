@@ -98,6 +98,9 @@ export const MunchBox = styled.div`
     flex-direction: column;
     margin: 1.5em 0;
   }
+  .entry > p {
+    color: #13b660;
+  }
   .entry-btn {
     border: 3px solid white;
     color: white;

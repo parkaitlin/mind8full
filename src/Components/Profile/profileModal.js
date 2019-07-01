@@ -6,9 +6,7 @@ const ProfileModal = ({closeProfile, deleteProfile, editProfile, userInfo, show,
         <div className={showHideClassName}>
             <section className='modal-main'>
                 {children}
-                <button onClick={closeProfile}>close</button>
-                <button onClick={()=> editProfile(userInfo)}>save changes</button>
-                <button onClick={deleteProfile}>deactivate account</button>
+                
             </section>
         </div>
     )
