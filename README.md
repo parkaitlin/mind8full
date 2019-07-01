@@ -12,7 +12,10 @@ The third option, “something to munch on”, is an exercise where we send you 
 
 Using one of these three methods, we encourage you to take a mental break each day. you are doing everything to live your best life and we would like to support you as best as we can. We hope mind8full serves purpose in your journey, so please visit often!
 
-This App is powered by:
+#### [mind8full](https://mind8full.herokuapp.com/home)
+
+
+#### This App is powered by:
 - A Mindful Morning by David Dillard-Wright
 - [TheySaidSo Quotes API](https://theysaidso.com/api/#)
 
@@ -27,6 +30,7 @@ This App is powered by:
 - JSX
 - CSS3
 - styled-components
+- Heroku
 - Trello
 - Sketch
 
