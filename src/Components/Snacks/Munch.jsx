@@ -35,7 +35,6 @@ class Munch extends Component {
             credentials: 'include'
           });
           const parsedData = await data.json();
-          console.log(parsedData)
           return parsedData
         } catch (error) {
           console.log(error)
