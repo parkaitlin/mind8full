@@ -72,22 +72,18 @@ class Profile extends Component {
                             <h5>{currentUser.level}</h5>
                             <button name="profileModal" onClick={(e)=>this.viewModal(e, 0)}>edit profile</button>
                         </div>
-                        <div className='cal-jour'>
-                            <div className='calendar'>
-                                <Calendar />
-                                <h4 className="check-in">total check-ins: {currentUser.calendar.length}</h4>
-                            </div>
+                        <div className='cal'>
+                            <Calendar />
+                            <h4 className="check-in">total check-ins: {currentUser.calendar.length}</h4>
                         </div>
                     </div>
                     <div className='journal'>
-                        <h4>contents</h4>
+                        <h4>journal contents</h4>
+                        <ul>
                         {this.props.currentUser.journal.map((entry, i)=>{
-                            return(
-                                <ul>
-                                    <li><button name="entryModal" key={entry._id} className='entry' onClick={(e)=>this.viewModal(e, i)}>{entry.title} {entry.date}</button></li>
-                                </ul>
-                            ) 
+                            return <li key={entry._id}><button name="entryModal" className='entry' onClick={(e)=>this.viewModal(e, i)}>{entry.title} <span>{entry.date}</span></button></li>
                         })}
+                        </ul>
                     </div>
                     </ProfilePage>
 

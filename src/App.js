@@ -148,7 +148,7 @@ class App extends Component {
     }
   }
   render(){
-    const {registered, logged, password, message, name, currentUser, loading} = this.state
+    const {registered, logged, password, message, name, currentUser} = this.state
     return (
       <div className="App">
           <TransitionGroup>

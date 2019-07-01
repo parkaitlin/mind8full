@@ -48,6 +48,7 @@ const ModalBox = styled.div`
       list-style: none;
       font-family: 'Catamaran', sans-serif;
       color: #535353;
+      margin: .5em 0;
       > span {
         color: #3a566e;
         font-weight: 600;
