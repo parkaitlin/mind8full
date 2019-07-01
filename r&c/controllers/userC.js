@@ -45,9 +45,12 @@ module.exports = {
         }
     },
     updateProfile: async (req, res)=>{
-        if(!req.body.password){
-            delete req.body.password
-        }                        
+        const bodyArray = Object.entries(req.body)
+        for(const [property, value] of bodyArray){
+            if(value === ''){
+                delete req.body[property]
+            }
+        }                       
         try {
             const updatedUser = await User.findByIdAndUpdate(req.session.userId, req.body, {new:true})
             if(req.body.password){

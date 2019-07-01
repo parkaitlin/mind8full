@@ -57,7 +57,7 @@ class Profile extends Component {
         this.setState({
             profileModal:false
         })
-        this.props.editProfile(this.state)
+        this.props.editUser(this.state)
     }
     render(){
         const {key, entryModal, profileModal, firstName, lastName, email, password} = this.state
@@ -66,21 +66,27 @@ class Profile extends Component {
             logged 
             ? <Wrapper>
                 <ProfilePage>
-                    <div className='user-info'>
-                        <h3 className='user-name'>{currentUser.firstName}</h3>
-                        <h5 className='level'>{currentUser.level}</h5>
-                        <button name="profileModal" onClick={(e)=>this.viewModal(e, 0)}>edit profile</button>
-                    </div>
-                    <div className='cal-jour'>
-                        <div className='calendar'>
-                            <Calendar />
-                            <h4 className="check-in">total check-ins: {currentUser.calendar.length}</h4>
+                    <div className="left-side">
+                        <div className='user-info'>
+                            <h3>{currentUser.firstName}</h3>
+                            <h5>{currentUser.level}</h5>
+                            <button name="profileModal" onClick={(e)=>this.viewModal(e, 0)}>edit profile</button>
+                        </div>
+                        <div className='cal-jour'>
+                            <div className='calendar'>
+                                <Calendar />
+                                <h4 className="check-in">total check-ins: {currentUser.calendar.length}</h4>
+                            </div>
                         </div>
                     </div>
                     <div className='journal'>
                         <h4>contents</h4>
                         {this.props.currentUser.journal.map((entry, i)=>{
-                            return <button name="entryModal" key={entry._id} className='entry' onClick={(e)=>this.viewModal(e, i)}>{entry.title} {entry.date}</button>
+                            return(
+                                <ul>
+                                    <li><button name="entryModal" key={entry._id} className='entry' onClick={(e)=>this.viewModal(e, i)}>{entry.title} {entry.date}</button></li>
+                                </ul>
+                            ) 
                         })}
                     </div>
                     </ProfilePage>

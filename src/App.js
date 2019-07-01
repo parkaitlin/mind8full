@@ -39,7 +39,6 @@ class App extends Component {
           }
       })
       const parsedData = await data.json();
-      console.log(parsedData)
       if(parsedData.data === 'user created'){
         this.setState({
           registered: true,
@@ -67,16 +66,13 @@ class App extends Component {
           }
       })
       const parsedResponse = await loginResponse.json()
-      console.log(parsedResponse)
       if(parsedResponse.data === 'login successful'){
-          console.log(parsedResponse.data)
           this.setState({
             logged: true,
             name: parsedResponse.user.firstName,
             currentUser: parsedResponse.user
           })
       } else {
-          console.log(parsedResponse.data)
           this.setState({
               password: '',
               message: parsedResponse.message
@@ -96,7 +92,6 @@ class App extends Component {
         }
       })
       const parsedResponse = await logoutResponse.json();
-      console.log(parsedResponse)
       this.setState({
         logged: false,
         message: parsedResponse.message
@@ -111,7 +106,6 @@ class App extends Component {
     })
   }
   updateUser = (info)=>{
-    console.log('updated user')
     this.setState({
       currentUser: (info)
     })
@@ -146,7 +140,9 @@ class App extends Component {
         }
       })
       const parsedData = await data.json();
-      console.log(parsedData)
+      this.setState({
+        currentUser: parsedData.user
+      })
     } catch (error) {
       console.log(error)
     }
