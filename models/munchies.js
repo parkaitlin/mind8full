@@ -7,7 +7,7 @@ const munchies = [
     },
     {
         title: 'Responding to Failure',
-        quote: 'The way in which man approaches his failure determines he will become',
+        quote: 'The way in which man [sic] approaches his failure determines what he will become',
         author: 'Karl Jaspers',
         prompt: 'We all know failure can be painful and discouraging. Every person alive has defining failures in his or her past. Not all of these failures will be surmounted: Some will permanently define the personality of a person. We do not need to see these failures as obstacles to be overcome. Perhaps they are just part of our psychic makeup like mental wallpaper. We can identify many types of failure, some that prove to be transformative, and others that block our growth for years. Mindfulness practice can help to develop clarity about failure. Give yourself permission to reflect for a few minutes on one defining failure in your life. Is this failure simply something to be discarded, or is it something to be overcome through more strenuous effort?Make a resolution to meet your failure not through regret or self-blame, but through concrete action to be taken in the present. Brainstorm a few steps you can take to leave your past in the past and make a new start'
     },
@@ -27,7 +27,7 @@ const munchies = [
         title: 'Find Calm in the Storm',
         quote: 'Our emotions and thoughts are like the weather. They are sometimes pleasant, sometimes unpleasant, always changing. We can do little to control them directly, and are wise not to try... And after the occasional, inevitable storm had passed, we only need to quietly watch as the clouds dissipate on their own without any help from us',
         author: 'Steve Hagen',
-        prompt: 'Most of us would not try to wrestle an alligator, or get into a rowboat and steer it toward a hurricane. And yet we readily plunge into the storms of negative thoughts when they arise, thinking in vain that we can manage them and make them conform to our wills. You may think the analogy is not apt because, after all, thoughts occur inside our own heads. Our thoughts, you might think are the very contents of ourselves. And yet they come and go as they like, and we are not very adept at controlling them. The trick of meditation, if there is a trick, is to regard our thoughts as something external like the weather of like a passing crowd. No matter what happens, avoid identifying with the thoughts. Regards them as out there, not in here.'
+        prompt: 'Most of us would not try to wrestle an alligator, or get into a rowboat and steer it toward a hurricane. And yet we readily plunge into the storms of negative thoughts when they arise, thinking in vain that we can manage them and make them conform to our wills. You may think the analogy is not apt because, after all, thoughts occur inside our own heads. Our thoughts, you might think are the very contents of ourselves. And yet they come and go as they like, and we are not very adept at controlling them. The trick of meditation, if there is a trick, is to regard our thoughts as something external like the weather of like a passing crowd. No matter what happens, avoid identifying with the thoughts. Regard them as out there, not in here.'
     }
 ]
 

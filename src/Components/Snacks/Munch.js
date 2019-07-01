@@ -1,12 +1,46 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import JournalEntry from './Entry';
+import { Wrapper } from '../../style';
+import { Page, MunchBox } from './style';
 
-class Munchie extends Component {
+class Munch extends Component {
     state = {
-        date: '',
         newEntry: false,
-        message: ''
+        date: '',
+        title: '',
+        quote: '',
+        author: '',
+        prompt: '',
+        entry: '',
+        message: '',
+    }
+    handleChange = (e)=>{
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+    getMunch = async ()=>{
+        try {
+          const data = await fetch('/user/random', {
+            credentials: 'include'
+          });
+          const parsedData = await data.json();
+          console.log(parsedData)
+          return parsedData
+        } catch (error) {
+          console.log(error)
+        }
+    }
+    componentDidMount(){
+        this.getMunch().then(data=>{
+            this.setState({
+                title: data.data.title,
+                quote: data.data.quote,
+                author: data.data.author,
+                prompt: data.data.prompt
+            })
+        })
     }
     paperForEntry = ()=>{
         this.setState({
@@ -40,29 +74,38 @@ class Munchie extends Component {
         })
     }
     render(){
-        const {date, newEntry, message} = this.state
-        const {munchie, logged} = this.props
+        const {date, newEntry, message, title, quote, author, prompt, entry} = this.state
+        const {logged} = this.props
         return(
             logged
-            ? <div className='munch-box'>
-                <h4 className="title">{munchie.title}</h4>
-                <h6 className='munch-quote'>"{munchie.quote}"</h6>
-                <h6 className= 'author'>-{munchie.author}</h6>
-                <p className='munch-slogan'>something to munch on...</p><br/>
-                <div className='prompt-newEntry'>
-                <div className='prompt-box'><p className='prompt'>{munchie.prompt}</p></div>
-                {newEntry
-                ? <JournalEntry munchie={munchie} date={date} cancelNewEntry={this.cancelNewEntry} saveNewEntry={this.saveNewEntry} />
-                : <div> 
-                    <p>{message}</p>
-                    <button className='entry-button' onClick={this.paperForEntry}>New journal entry</button> 
+            ? <Wrapper>
+                <Page>
+                    <MunchBox>
+                        <h5><span>{title}</span> "{quote}" quote by: {author}</h5>
+                        <h2>something to munch on...</h2>
+                        <p>{prompt}</p>
+                {
+                    newEntry
+                    ? <div className='paper'>
+                        <div className='x'>
+                            <button className="cancel-btn" onClick={this.cancelNewEntry}>&times;</button>
+                        </div>
+                        <p>{date}</p>
+                        <textarea className='entry-text' rows="14" cols="48" name="entry" placeholder="Start entry here..." value={entry} onChange={this.handleChange} />
+                        <button onClick={this.saveEntry}>save entry</button>
+                    </div>
+                // <JournalEntry munchie={munchie} date={date} cancelNewEntry={this.cancelNewEntry} saveNewEntry={this.saveNewEntry} />
+                : <div className="entry"> 
+                        <p>{message}</p>
+                        <button className='entry-btn' onClick={this.paperForEntry}>new journal entry</button> 
                 </div>
                 }
-                </div>
-            </div>
+                    </MunchBox>
+                </Page>
+            </Wrapper> 
             : <Redirect to="/" />
         )
     }
 }
 
-export default Munchie;
+export default Munch;

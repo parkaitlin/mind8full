@@ -1,21 +1,53 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
-import {RingLoader} from 'react-spinners';
+import { Wrapper } from '../../style';
+import { Quote } from './quote';
 
-const Bear = (props)=>{
-    return(
-        props.logged
-        ? 
-        <div className="quote">
-            <h5>gummy bear</h5>
-            <div className='quote-container'>
-                <h6>"{props.bear.quote}"</h6>
-                <p>-{props.bear.author}</p>
-            </div>
-            <RingLoader loading={props.loading} />
-        </div>
+class Bear extends Component {
+    state = {
+        bear: '',
+        bearCategory: ['inspire', 'inspirational', 'kindness', 'inspiration', 'determined', 'grit', "inspirational-attitude", "inspirational-happiness"],
+        loading: true    
+    }
+    getBear = async ()=>{
+        const i = Math.floor(Math.random() * 8)
+        const category = this.state.bearCategory[i]
+        try {
+            const data = await fetch(`/user/${category}`, {
+                credentials: 'include'
+            });
+            const parsedData = await data.json();
+            console.log(parsedData)
+            return parsedData
+        } catch (error) {
+            console.log(error)
+        } 
+    }
+    componentDidMount(){
+        this.getBear().then((data)=>{
+            this.setState({
+                bear: data.data.contents,
+                loading: false
+            })
+        })
+    }
+    render(){
+        const {logged} = this.props
+        const {bear} = this.state
+        return(
+            logged
+            ? <Wrapper>
+                <Quote>
+                    <h2>gummy bear</h2>
+                    <div className='quote-container'>
+                        <h4>{bear.quote}</h4>
+                        <h5>quote by: {bear.author}</h5>
+                    </div>
+                </Quote>
+            </Wrapper>
         : <Redirect to='/' />
-    )
+        )
+    }
 } 
 
 export default Bear;

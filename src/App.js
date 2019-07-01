@@ -25,11 +25,6 @@ class App extends Component {
     password: '',
     message: '',
     name: '',
-    bear: '',
-    bearCategory: ['inspire', 'inspirational', 'kindness', 'inspiration', 'determined', 'grit', "inspirational-attitude", "inspirational-happiness"],
-    drop: '',
-    dropCategory: ['motivational', 'positive', 'hopeful', 'optimism', 'happiness', 'compassion', 'perseverance'],
-    munchie: '',
     currentUser: '',
     loading: true
   }
@@ -115,58 +110,6 @@ class App extends Component {
       message: ''
     })
   }
-  getBear = async ()=>{
-    const i = Math.floor(Math.random() * 8)
-    const category = this.state.bearCategory[i]
-    console.log(category)
-    try {
-      const data = await fetch(`/user/${category}`, {
-        credentials: 'include'
-      });
-      const parsedData = await data.json();
-      console.log(parsedData)
-      this.setState({
-        bear: parsedData.data.contents,
-        loading: false
-      })
-      
-    } catch (error) {
-      console.log(error)
-    } 
-  }
-  getDrop = async ()=>{
-    const i = Math.floor(Math.random() * 7)
-    const category = this.state.dropCategory[i]
-    console.log(category)
-    try {
-      const data = await fetch(`/user/${category}`, {
-        credentials: 'include'
-      });
-      const parsedData = await data.json();
-      console.log(parsedData)
-      this.setState({
-        drop: parsedData.data.contents,
-        loading: false
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  getMunchie = async ()=>{
-    try {
-      const data = await fetch('/user/random', {
-        credentials: 'include'
-      });
-      const parsedData = await data.json();
-      console.log(parsedData)
-      this.setState({
-        munchie: parsedData.data,
-        loading: false
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
   updateUser = (info)=>{
     console.log('updated user')
     this.setState({
@@ -209,12 +152,12 @@ class App extends Component {
     }
   }
   render(){
-    const {registered, logged, password, message, name, bear, drop, munchie, currentUser, loading} = this.state
+    const {registered, logged, password, message, name, currentUser, loading} = this.state
     return (
       <div className="App">
           <TransitionGroup>
             <NavBar logged={logged} logout={this.logout} getUser={this.getUser} clearMessage={this.clearMessage}/>
-            <CSSTransition timeout={800} classNames="fadeTwo">
+            <CSSTransition timeout={3000} classNames="fadeTwo">
               <Switch>
                 <Route exact path={routes.ENTER} render={() => <Enter />} />
                 <Route exact path={routes.LOGIN} render={() => <Login logged={logged} password={password} message={message} login={this.login} />} />
@@ -222,9 +165,9 @@ class App extends Component {
                 <Route exact path={routes.HOME} render={()=> <Home resetLoader={this.resetLoader} getBear={this.getBear} getDrop={this.getDrop} getMunchie={this.getMunchie} logged={logged} registered={registered} name={name} />} />
                 <Route exact path={routes.ABOUT} render={()=> <About />} />
                 <Route exact path={routes.PROFILE} render={()=> <Profile logged={logged} deleteUser={this.deleteUser} currentUser={currentUser} editUser={this.editUser} updateUser={this.updateUser} />} />
-                <Route exact path={routes.BEAR} render={()=> <Bear bear={bear} logged={logged} loading={loading} />} />
-                <Route exact path={routes.DROP} render={()=> <Drop drop={drop} logged={logged} />} />
-                <Route exact path={routes.MUNCH} render={()=> <Munchie munchie={munchie} logged={logged} updateUser={this.updateUser} />} />
+                <Route exact path={routes.BEAR} render={()=> <Bear logged={logged} />} />
+                <Route exact path={routes.DROP} render={()=> <Drop logged={logged} />} />
+                <Route exact path={routes.MUNCH} render={()=> <Munchie logged={logged} updateUser={this.updateUser} />} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>

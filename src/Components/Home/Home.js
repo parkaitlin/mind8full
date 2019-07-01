@@ -19,7 +19,7 @@ const Home = (props)=>{
                 <h6>what would you like?</h6>
                 <Grid>
                     <NavLink to={routes.BEAR} onClick={props.getBear}><li className="letter-left letter-one">Gummy<span data-letter="B">B</span>ear</li></NavLink>
-                    <NavLink to={routes.DROP} onClick={props.getDrop}><li className="letter-right letter-two">Cough<span data-letter="D">D</span>rop</li></NavLink>
+                    <NavLink to={routes.DROP}><li className="letter-right letter-two">Cough<span data-letter="D">D</span>rop</li></NavLink>
                     <NavLink to={routes.MUNCH} onClick={props.getMunchie}><li className="letter-left letter-three">Something to<span data-letter="M">M</span>unch on</li></NavLink>
                 </Grid>
             </HomePage>

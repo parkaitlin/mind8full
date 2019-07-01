@@ -3,12 +3,6 @@ import React, {Component} from 'react';
 
 class JournalEntry extends Component {
     state = {
-        date: this.props.date,
-        title: this.props.munchie.title,
-        quote: this.props.munchie.quote,
-        author: this.props.munchie.author,
-        prompt: this.props.munchie.prompt,
-        entry: ''
     }
     handleChange = (e)=>{
         this.setState({

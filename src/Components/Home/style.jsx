@@ -11,11 +11,11 @@ export const HomePage = styled.div`
   background-image: linear-gradient(to bottom right, #70e1f5, #ffd194);
   h2 {
     font-size: 5em;
-    animation: trackingInExpand 3s;
+    animation: trackingInExpand 2s;
   }
   h4 {
     font-size: 3em;
-    animation: trackingInExpand 3s;
+    animation: trackingInExpand 2.5s;
   }
   h6 {
     font-size: 2.5em;
@@ -47,7 +47,7 @@ export const Grid = styled.ul`
   width: 100%;
   li {
     position: relative;
-    font-size: 5em;
+    font-size: 4.5em;
     font-family: 'Catamaran', sans-serif;
     line-height: 1.5;
     max-height: 290px;
