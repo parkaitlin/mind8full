@@ -173,7 +173,7 @@ const About = (props)=>{
                     </section>
                 </Paragraph>
                 <Footer>
-                    <div className="project-link">View Project on_<a href="https://github.com/parkaitlin"><FontAwesomeIcon icon={faGithub} /></a></div>          
+                    <div className="project-link">View Project on_<a href="https://github.com/parkaitlin/mind8full"><FontAwesomeIcon icon={faGithub} /></a></div>          
                     <div>Copyright © mind8full 2019.</div>
                 </Footer>
             </AboutPage>
