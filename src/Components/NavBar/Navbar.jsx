@@ -14,32 +14,16 @@ const Bars = styled.div`
         z-index: 1;
     }
 `
-class NavBar extends Component {
-    state = {
-        showSideBar: false,
-    }
-    openBar = ()=>{
-        this.setState({
-            showSideBar: true
-        })
-    }
-    closeBar = ()=>{
-        this.setState({
-            showSideBar: false
-        })
-    }
-    render(){
-        const {showSideBar} = this.state
-        return(
-            <Bars>
-            {
-                !showSideBar
-                && <FontAwesomeIcon icon={faBars} className="bars" onClick={this.openBar} />
-            }
-            <SideBar closeBar={this.closeBar} show={showSideBar} logged={this.props.logged} logout={this.props.logout} />
-            </Bars>
-        )
-    }
+const NavBar = (props)=>{
+    return(
+        <Bars>
+        {
+            !props.show
+            && <FontAwesomeIcon icon={faBars} className="bars" onClick={props.openBar} />
+        }
+        <SideBar clearMessage={props.clearMessage} closeBar={props.closeBar} show={props.show} logged={props.logged} logout={props.logout} />
+        </Bars>
+    )
 }
 
 export default NavBar;

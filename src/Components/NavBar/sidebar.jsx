@@ -92,13 +92,13 @@ const SideBar = (props)=>{
                 {
                     props.logged
                     ? <>
-                    <li><NavLink to={routes.HOME} className='navbar-link' activeClassName='active'>home</NavLink></li>
-                    <li><NavLink to={routes.PROFILE} className='navbar-link' activeClassName='active'>journal</NavLink></li>
+                    <li><NavLink to={routes.HOME} className='navbar-link' activeClassName='active' onClick={props.closeBar} >home</NavLink></li>
+                    <li><NavLink to={routes.PROFILE} className='navbar-link' activeClassName='active' onClick={props.closeBar} >journal</NavLink></li>
                     <li><NavLink to={routes.LOGOUT} className='navbar-link' onClick={props.logout}>logout</NavLink></li>
                     </>
                     : <>
                     <li><NavLink to={routes.LOGIN} className='navbar-link' activeClassName='active' onClick={props.clearMessage}>login</NavLink></li>
-                    <li><NavLink to={routes.REGISTER} className='navbar-link' activeClassName='active'>sign up</NavLink></li>
+                    <li><NavLink to={routes.REGISTER} className='navbar-link' activeClassName='active' onClick={props.closeBar} >sign up</NavLink></li>
                     </>
                 }
                 </ul>

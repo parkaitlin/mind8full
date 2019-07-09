@@ -26,7 +26,18 @@ class App extends Component {
     message: '',
     name: '',
     currentUser: '',
-    loading: true
+    loading: true,
+    showSideBar: false,
+  }
+  openBar = ()=>{
+    this.setState({
+        showSideBar: true
+    })
+  }
+  closeBar = ()=>{
+    this.setState({
+        showSideBar: false
+    })
   }
   register = async (info)=>{
     try {
@@ -96,6 +107,7 @@ class App extends Component {
         logged: false,
         message: parsedResponse.message
       })
+      this.closeBar()
     } catch (error) {
       console.log(error)
     }
@@ -104,6 +116,7 @@ class App extends Component {
     this.setState({
       message: ''
     })
+    this.closeBar()
   }
   updateUser = (info)=>{
     this.setState({
@@ -152,7 +165,7 @@ class App extends Component {
     return (
       <div className="App">
           <TransitionGroup>
-            <NavBar logged={logged} logout={this.logout} getUser={this.getUser} clearMessage={this.clearMessage}/>
+            <NavBar logged={logged} logout={this.logout} getUser={this.getUser} clearMessage={this.clearMessage} closeBar={this.closeBar} openBar={this.openBar} show={this.state.showSideBar}/>
             <CSSTransition timeout={3000} classNames="fadeTwo">
               <Switch>
                 <Route exact path={routes.ENTER} render={() => <Enter />} />

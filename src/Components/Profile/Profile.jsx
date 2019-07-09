@@ -4,8 +4,6 @@ import Calendar from './calendar';
 import Modal from './modal';
 import { Wrapper } from '../../style';
 import { ProfilePage } from './style';
-// import EntryModal from './entryModal';
-// import ProfileModal from './profileModal';
 
 class Profile extends Component {
     state = {
