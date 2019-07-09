@@ -1,4 +1,4 @@
-# Mind8Full
+# mind8Full
 
 ![Home Page Screenshot](/public/img/homepage.png)
 
