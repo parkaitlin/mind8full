@@ -17,7 +17,7 @@
     "http": "0.0.0",
     "http-errors": "^1.7.2",
     "lodash.template": "^4.5.0",
-    "mongoose": "^5.5.7",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "node-fetch": "^2.5.0",
     "normalize-port": "^1.0.0",
